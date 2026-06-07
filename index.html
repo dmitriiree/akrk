@@ -165,18 +165,19 @@
     .sidebar.open { transform: translateX(0); }
     .sidebar-toggle { display: flex; }
     .app { flex-direction: column; }
-    .stage { overflow-y: auto; overflow-x: hidden; }
+    .stage { overflow: visible; }
     .slides-wrapper {
       flex-direction: column;
       transform: none !important;
+      height: auto !important;
     }
     .slide {
       min-width: 100%;
       width: 100%;
-      height: auto;
+      height: auto !important;
+      min-height: 0 !important;
+      display: block;
       padding: 24px 20px 32px;
-      justify-content: flex-start;
-      padding-top: 56px;
       border-bottom: 1px solid var(--border);
     }
     .slide:first-child { padding-top: 40px; }
