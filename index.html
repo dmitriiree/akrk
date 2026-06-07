@@ -450,6 +450,7 @@
       grid-template-columns: 1fr;
       gap: 16px;
     }
+    .strat-grid { grid-template-columns: 1fr !important; }
   }
 
   .slide-nav {
@@ -796,19 +797,22 @@
   <div class="slide-content">
     <div class="section-label fed">🟦 Федеральный уровень</div>
     <h2>Стратегия АКРК на 2026</h2>
-    <p>Три базовых вектора — каркас всей деятельности организации:</p>
-    <div class="grid-2">
-      <div class="card" style="border-left:3px solid #5b9bd5;">
-        <h4>1. Историческая справедливость</h4>
-        <p>Восстановление прав, правовой статус корё-сарам, работа с Парламентом, визовые вопросы (F4/F1/F3), регистрация наследия в ЮНЕСКО «Память мира»</p>
+    <p>Три базовых вектора — каркас всей деятельности:</p>
+    <div class="strat-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(91,155,213,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#5b9bd5;">⚖</div>
+        <h4 style="font-size:13px;margin-bottom:6px;">Историческая справедливость</h4>
+        <p style="font-size:11px;color:var(--text-muted);">Правовой статус корё-сарам, работа с Парламентом, ЮНЕСКО «Память мира»</p>
       </div>
-      <div class="card" style="border-left:3px solid #5b9bd5;">
-        <h4>2. Устойчивое развитие</h4>
-        <p>Правовая навигация, защита трудовых прав, модель «семья — школа — сообщество», билингвальное образование, профессиональная переподготовка</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(230,180,80,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);">🌱</div>
+        <h4 style="font-size:13px;margin-bottom:6px;">Устойчивое развитие</h4>
+        <p style="font-size:11px;color:var(--text-muted);">Правовая навигация, образование, модель «семья — школа — сообщество»</p>
       </div>
-      <div class="card" style="border-left:3px solid #5b9bd5;">
-        <h4>3. Вклад в Корею</h4>
-        <p>Образ корё-сарам как ресурса развития страны, деловые связи со странами СНГ, предпринимательство, участие в демографических программах</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(167,139,250,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#a78bfa;">🌏</div>
+        <h4 style="font-size:13px;margin-bottom:6px;">Вклад в Корею</h4>
+        <p style="font-size:11px;color:var(--text-muted);">Образ корё-сарам как ресурса развития, деловые связи со странами СНГ</p>
       </div>
     </div>
   </div>
