@@ -190,7 +190,7 @@
     margin: 0 auto;
     width: 100%;
   }
-  .slide-content.wide { max-width: 880px; }
+  .slide-content.wide { max-width: 960px; }
 
   .section-label {
     display: inline-block;
@@ -422,6 +422,34 @@
   .photo-grid .photo-wrap {
     margin: 0;
     aspect-ratio: 4/3;
+  }
+
+  /* Two-column layout for photo slides */
+  .slide-cols {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 28px;
+    align-items: start;
+    margin-top: 12px;
+  }
+  .col-photo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .col-photo .photo-wrap {
+    aspect-ratio: 4/3;
+    margin: 0;
+  }
+  .col-photo .photo-wrap.portrait {
+    aspect-ratio: 3/4;
+  }
+  .col-text { line-height: 1.5; }
+  @media (max-width: 700px) {
+    .slide-cols {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
   }
 
   .slide-nav {
@@ -801,11 +829,22 @@ class="slide-content">
   <div class="slide-content wide">
     <div class="section-label reg">🟧 Региональный уровень · Февраль 2026</div>
     <h2>🏛 Ежегодное собрание АКРК в Ансане</h2>
-    <div class="photo-wrap">
-      <img src="images/ansan-meeting.jpg" alt="Ежегодное собрание АКРК, Ансан, 21.02.2026" loading="lazy">
-      <span class="photo-label">🏛 21.02.2026 · Ансан</span>
+    <div class="slide-cols">
+      <div class="col-photo">
+        <div class="photo-wrap">
+          <img src="images/ansan-meeting.jpg" alt="Ежегодное собрание АКРК, Ансан, 21.02.2026" loading="lazy">
+          <span class="photo-label">🏛 21.02.2026 · Ансан</span>
+        </div>
+      </div>
+      <div class="col-text">
+        <p>Команда Пусана приняла участие в <strong>V отчётно-выборном собрании АКРК</strong> в Ансане.</p>
+        <ul>
+          <li>Ощущение масштаба ассоциации</li>
+          <li>Понимание стратегии развития</li>
+          <li>Заряд для развития на юге</li>
+        </ul>
+      </div>
     </div>
-    <p style="font-size:13px;">Команда Пусана приняла участие в V отчётно-выборном собрании АКРК в Ансане — ощущение масштаба, понимание стратегии, заряд для развития на юге.</p>
   </div>
 </div>
 
@@ -815,21 +854,26 @@ class="slide-content">
   <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · 28.02.2026</div>
     <h2>🏓 III Турнир по настольному теннису</h2>
-    <div class="photo-wrap">
-      <img src="images/tennis-tournament.jpg" alt="III Турнир по настольному теннису, 28.02.2026" loading="lazy">
-      <span class="photo-label">🏓 28.02.2026</span>
+    <div class="slide-cols">
+      <div class="col-photo">
+        <div class="photo-wrap portrait">
+          <img src="images/tennis-tournament.jpg" alt="III Турнир по настольному теннису, 28.02.2026" loading="lazy">
+          <span class="photo-label">🏓 28.02.2026</span>
+        </div>
+      </div>
+      <div class="col-text">
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">28</div><div class="kpi-label">участников</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10</div><div class="kpi-label">городов Кореи</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">60</div><div class="kpi-label">человек на площадке</div></div>
+        </div>
+        <ul>
+          <li>Совместно с Ассоциацией настольного тенниса Пусана — важный шаг интеграции с местным сообществом</li>
+          <li>Почетный гость — Генеральный консул Республики Казахстан в Пусане</li>
+          <li>Спонсоры: церковь SOOYOUNGRO, ROYAL FOOD, NOALYUT</li>
+        </ul>
+      </div>
     </div>
-    <div class="kpi-row">
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">28</div><div class="kpi-label">участников</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10</div><div class="kpi-label">городов Кореи</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">60</div><div class="kpi-label">человек на площадке</div></div>
-    </div>
-    <ul>
-      <li>Совместно с Ассоциацией настольного тенниса Пусана — важный шаг интеграции с местным сообществом</li>
-      <li>Почетный гость — Генеральный консул Республики Казахстан в Пусане</li>
-      <li>Спонсоры: церковь SOOYOUNGRO, ROYAL FOOD, NOALYUT</li>
-      <li>5 женщин и 23 мужчины; круговые и групповые этапы + плей-офф</li>
-    </ul>
   </div>
 </div>
 
@@ -839,27 +883,30 @@ class="slide-content">
   <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · 15–16.05.2026</div>
     <h2>📚 Лекции Вадима Акуленко</h2>
-    <div class="photo-grid">
-      <div class="photo-wrap">
-        <img src="images/lectures-group.jpg" alt="Лекции Вадима Акуленко, 15-16.05.2026" loading="lazy">
-        <span class="photo-label">📚 Групповое фото</span>
+    <div class="slide-cols">
+      <div class="col-photo">
+        <div class="photo-wrap">
+          <img src="images/lectures-group.jpg" alt="Лекции Вадима Акуленко, 15-16.05.2026" loading="lazy">
+          <span class="photo-label">📚 Групповое фото</span>
+        </div>
+        <div class="photo-wrap">
+          <img src="images/lectures-museum.jpg" alt="Экскурсия в Пусанский музей, 15.05.2026" loading="lazy">
+          <span class="photo-label">🏛 Музей</span>
+        </div>
       </div>
-      <div class="photo-wrap">
-        <img src="images/lectures-museum.jpg" alt="Экскурсия в Пусанский музей, 15.05.2026" loading="lazy">
-        <span class="photo-label">🏛 Музей</span>
+      <div class="col-text">
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">3</div><div class="kpi-label">лекции</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">30</div><div class="kpi-label">участников за 2 дня</div></div>
+        </div>
+        <ul>
+          <li>Лектор — <strong>Акуленко Вадим Сергеевич</strong> (канд. ист. наук, доцент ДВФУ, член АКРК)</li>
+          <li>День 1: экскурсия в Пусанский гос. музей + лекция «Что в имени моём: понгван»</li>
+          <li>День 2: «Переселение русскоговорящих корейцев» + «Места памяти корё-сарам»</li>
+          <li>Семьи с детьми, гости из других городов, живые интервью участников</li>
+        </ul>
       </div>
     </div>
-    <div class="kpi-row">
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">3</div><div class="kpi-label">лекции</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">30</div><div class="kpi-label">участников за 2 дня</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">45K</div><div class="kpi-label">экспонатов в музее</div></div>
-    </div>
-    <ul>
-      <li>Лектор — <strong>Акуленко Вадим Сергеевич</strong> (канд. ист. наук, доцент ДВФУ, член АКРК)</li>
-      <li>День 1: экскурсия в Пусанский гос. музей + лекция «Что в имени моём: понгван»</li>
-      <li>День 2: «Переселение русскоговорящих корейцев» + «Места памяти корё-сарам»</li>
-      <li>Семьи с детьми, гости из других городов, живые интервью участников</li>
-    </ul>
   </div>
 </div>
 
@@ -869,26 +916,29 @@ class="slide-content">
   <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · 23.05.2026</div>
     <h2>🌍 Global Gathering — фестиваль народов мира</h2>
-    <div class="photo-grid">
-      <div class="photo-wrap">
-        <img src="images/global-team-group.jpg" alt="Global Gathering, команда АКРК у стенда, 23.05.2026" loading="lazy">
-        <span class="photo-label">🌍 Команда</span>
+    <div class="slide-cols">
+      <div class="col-photo">
+        <div class="photo-wrap">
+          <img src="images/global-team-group.jpg" alt="Global Gathering, команда АКРК у стенда, 23.05.2026" loading="lazy">
+          <span class="photo-label">🌍 Команда</span>
+        </div>
+        <div class="photo-wrap">
+          <img src="images/global-visitors.jpg" alt="Global Gathering, посетители у стенда АКРК, 23.05.2026" loading="lazy">
+          <span class="photo-label">🌍 Стенд</span>
+        </div>
       </div>
-      <div class="photo-wrap">
-        <img src="images/global-visitors.jpg" alt="Global Gathering, посетители у стенда АКРК, 23.05.2026" loading="lazy">
-        <span class="photo-label">🌍 Стенд</span>
+      <div class="col-text">
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10+</div><div class="kpi-label">стран-участниц</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">🤝</div><div class="kpi-label">Kim Jong Wan</div></div>
+        </div>
+        <ul>
+          <li><strong>제21회 세계시민축제</strong> — крупнейший международный фестиваль Пусана, организованный Минюстом РК и мэрией при поддержке Busan Global City Foundation</li>
+          <li>Стенд АКРК: национальные костюмы, выпечка, живое общение о корё-сарам</li>
+          <li>Знакомство с <strong>Kim Jong Wan</strong> — представителем образовательного центра по истории корейцев Средней Азии. Предложил сотрудничество</li>
+        </ul>
       </div>
     </div>
-    <div class="kpi-row">
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10+</div><div class="kpi-label">стран-участниц</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">12</div><div class="kpi-label">человек команда</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">🤝</div><div class="kpi-label">Kim Jong Wan</div></div>
-    </div>
-    <ul>
-      <li><strong>제21회 세계시민축제</strong> — крупнейший международный фестиваль Пусана, организованный Минюстом РК и мэрией при поддержке Busan Global City Foundation</li>
-      <li>Стенд АКРК: национальные костюмы, выпечка, живое общение о корё-сарам</li>
-      <li>Знакомство с <strong>Kim Jong Wan</strong> — представителем образовательного центра по истории корейцев Средней Азии. Предложил сотрудничество</li>
-    </ul>
   </div>
 </div>
 
@@ -898,20 +948,21 @@ class="slide-content">
   <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · Март 2026</div>
     <h2>🚀 Молодёжное движение: встреча в Кимхэ</h2>
-    <div class="photo-grid">
-      <div class="photo-wrap">
-        <img src="images/kimhae-youth.jpg" alt="Встреча с молодёжным движением в Кимхэ" loading="lazy">
-        <span class="photo-label">🚀 Кимхэ</span>
+    <div class="slide-cols">
+      <div class="col-photo">
+        <div class="photo-wrap portrait">
+          <img src="images/kimhae-youth.jpg" alt="Встреча с молодёжным движением в Кимхэ" loading="lazy">
+          <span class="photo-label">🚀 Кимхэ</span>
+        </div>
       </div>
-      <div class="photo-wrap">
-        <img src="images/kimhae-photo2.jpg" alt="Встреча с молодёжным движением в Кимхэ" loading="lazy">
-        <span class="photo-label">🚀 Кимхэ</span>
+      <div class="col-text">
+        <ul>
+          <li>Встреча с молодёжным движением корё-сарам в Кимхэ</li>
+          <li>Обсуждение совместных проектов и форматов сотрудничества</li>
+          <li>Новое направление для развития молодёжного сообщества на юге Кореи</li>
+        </ul>
       </div>
     </div>
-    <ul style="font-size:13px;">
-      <li>Молодёжное движение АКРК — информационная сессия о поступлении в университеты Кореи</li>
-      <li>Команда южного региона познакомилась с представителями, один из членов стал представителем молодёжки на юге</li>
-    </ul>
   </div>
 </div>
 
