@@ -284,13 +284,13 @@
     display: block;
     border: none;
   }
-  @media (max-width: 600px) { .video-wrap iframe { height: 180px; } }
+  @media (max-width: 600px) { .video-wrap iframe { height: 180px; } .kpi { padding: 10px 6px; } .kpi-num { font-size: 18px; } }
 
   .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    display: flex;
     gap: 8px;
     margin: 14px 0;
+    flex-wrap: nowrap;
   }
   .kpi {
     background: var(--surface);
@@ -298,6 +298,7 @@
     border-radius: var(--radius);
     padding: 14px 10px;
     text-align: center;
+    flex: 1;
   }
   .kpi-num { font-size: 22px; font-weight: 700; color: #5b9bd5; line-height: 1; }
   .kpi-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
@@ -1005,12 +1006,12 @@
     <div class="section-label reg">🟧 Событие · 28.02.2026</div>
     <h2>🏓 III Турнир по настольному теннису</h2>
     <div class="slide-cols">
-      <div class="col-photo" style="gap:4px;">
-        <div class="photo-wrap portrait">
+      <div class="col-photo" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+        <div class="photo-wrap" style="margin:0;">
           <img src="images/tennis-tournament.jpg" alt="III Турнир по настольному теннису, 28.02.2026" loading="lazy">
           <span class="photo-label">🏓 28.02.2026</span>
         </div>
-        <div class="photo-wrap" style="margin-top:0;">
+        <div class="photo-wrap" style="margin:0;">
           <img src="images/tournament-group.jpg" alt="III Турнир по настольному теннису, групповая фотография" loading="lazy">
           <span class="photo-label">🏓 Участники</span>
         </div>
