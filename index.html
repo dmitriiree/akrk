@@ -159,15 +159,30 @@
     padding: 48px 64px;
     overflow-y: auto;
   }
-  @media (max-width: 700px) {
-    .sidebar { display: none; }
-    .slide { padding: 32px 20px; }
-  }
+  /* Mobile: vertical scroll mode */
   @media (max-width: 700px) {
     .sidebar { display: flex; transform: translateX(-100%); position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; width: 260px; }
     .sidebar.open { transform: translateX(0); }
     .sidebar-toggle { display: flex; }
-    .slide { padding: 40px 20px; }
+    .app { flex-direction: column; }
+    .stage { overflow-y: auto; overflow-x: hidden; }
+    .slides-wrapper {
+      flex-direction: column;
+      transform: none !important;
+    }
+    .slide {
+      min-width: 100%;
+      width: 100%;
+      height: auto;
+      min-height: 100vh;
+      padding: 40px 20px;
+      justify-content: flex-start;
+      padding-top: 56px;
+    }
+    .slide:first-child { padding-top: 40px; }
+    .slide-nav button { display: none; }
+    .slide-nav { bottom: 12px; padding: 4px 12px; gap: 0; pointer-events: none; }
+    .slide-nav .counter { pointer-events: auto; }
   }
 
   .slide-content {
@@ -440,9 +455,6 @@
     min-width: 40px;
     text-align: center;
     user-select: none;
-  }
-  @media (max-width: 700px) {
-    .slide-nav { bottom: 12px; padding: 4px 12px; gap: 8px; }
   }
 
   .member-table {
@@ -1077,9 +1089,12 @@
   const wrapper = document.getElementById('slidesWrapper');
   const counter = document.getElementById('slideCounter');
   const navItems = document.querySelectorAll('.nav-item');
+  const isMobile = () => window.innerWidth <= 700;
 
   function update() {
-    wrapper.style.transform = `translateX(-${current * 100}%)`;
+    if (!isMobile()) {
+      wrapper.style.transform = `translateX(-${current * 100}%)`;
+    }
     counter.textContent = `${current + 1} / ${total}`;
     navItems.forEach((item, i) => {
       item.classList.toggle('active', i === current);
@@ -1091,6 +1106,11 @@
     if (n < 0) n = 0;
     if (n >= total) n = total - 1;
     current = n;
+    if (isMobile()) {
+      // scroll to that slide
+      const slides = document.querySelectorAll('.slide');
+      slides[n].scrollIntoView({ behavior: 'smooth' });
+    }
     update();
   }
   function nextSlide() { goSlide(current + 1); }
@@ -1106,7 +1126,7 @@
   // Close sidebar on nav click (mobile)
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('click', () => {
-      if (window.innerWidth <= 700) {
+      if (isMobile()) {
         document.querySelector('.sidebar').classList.remove('open');
         document.getElementById('sidebarOverlay').classList.remove('visible');
       }
@@ -1118,35 +1138,59 @@
   // Need to wait for DOM
   setTimeout(update, 0);
 
+  // Desktop: keyboard + wheel + touch
   document.addEventListener('keydown', (e) => {
+    if (isMobile()) return;
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); nextSlide(); }
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); }
   });
 
   let wheelTimeout = false;
   document.querySelector('.stage').addEventListener('wheel', (e) => {
+    if (isMobile()) return;
     if (wheelTimeout) return;
     wheelTimeout = true;
     setTimeout(() => { wheelTimeout = false; }, 600);
     if (e.deltaY > 0) nextSlide();
     else prevSlide();
   }, { passive: true });
-  // Touch support — только выраженный горизонтальный свайп
+
+  // Touch support — only on desktop (horizontal swipe between slides)
   let touchStartX = 0, touchStartY = 0;
   document.querySelector('.stage').addEventListener('touchstart', (e) => {
+    if (isMobile()) return;
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
   }, { passive: true });
   document.querySelector('.stage').addEventListener('touchend', (e) => {
+    if (isMobile()) return;
     const diffX = touchStartX - e.changedTouches[0].screenX;
     const diffY = touchStartY - e.changedTouches[0].screenY;
-    // Срабатывает только если свайп явно горизонтальный (diffX в 2+ раза больше diffY)
     if (Math.abs(diffX) > Math.abs(diffY) * 2 && Math.abs(diffX) > 50) {
       if (diffX > 0) nextSlide();
       else prevSlide();
     }
-    // Иначе — вертикальный скролл внутри слайда работает как обычно
   }, { passive: true });
+
+  // Mobile: IntersectionObserver to update counter on scroll
+  if ('IntersectionObserver' in window) {
+    const slideEls = document.querySelectorAll('.slide');
+    let scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && isMobile()) {
+          const idx = [...slideEls].indexOf(entry.target);
+          if (idx >= 0) {
+            current = idx;
+            counter.textContent = `${current + 1} / ${total}`;
+            navItems.forEach((item, i) => {
+              item.classList.toggle('active', i === current);
+            });
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    slideEls.forEach(s => scrollObserver.observe(s));
+  }
 </script>
 
 </body>
