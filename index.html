@@ -1028,22 +1028,14 @@
     else prevSlide();
   }, { passive: true });
   // Touch support — горизонтальный свайп
-  let touchStartX = 0, touchStartY = 0;
+  let touchStartX = 0;
   document.querySelector('.stage').addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
   }, { passive: true });
   document.querySelector('.stage').addEventListener('touchend', (e) => {
     const diffX = touchStartX - e.changedTouches[0].screenX;
-    const diffY = touchStartY - e.changedTouches[0].screenY;
-    // Горизонтальный свайп (влево/вправо) — приоритет
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+    if (Math.abs(diffX) > 50) {
       if (diffX > 0) nextSlide();
-      else prevSlide();
-    }
-    // Вертикальный — запасной вариант
-    else if (Math.abs(diffY) > 50) {
-      if (diffY > 0) nextSlide();
       else prevSlide();
     }
   }, { passive: true });
