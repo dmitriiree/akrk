@@ -41,7 +41,51 @@
     flex-direction: column;
     padding: 20px 12px;
     overflow-y: auto;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
   }
+  .sidebar.closed {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+  }
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 40;
+  }
+  .sidebar-overlay.visible { display: block; }
+
+  /* Toggle button */
+  .sidebar-toggle {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 60;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .sidebar-toggle:hover { color: var(--text); background: var(--surface-hover); }
+  @media (min-width: 701px) { .sidebar-toggle { display: none; } }
   .sidebar-brand {
     font-size: 12px;
     font-weight: 700;
@@ -118,6 +162,12 @@
   @media (max-width: 700px) {
     .sidebar { display: none; }
     .slide { padding: 32px 20px; }
+  }
+  @media (max-width: 700px) {
+    .sidebar { display: flex; transform: translateX(-100%); position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; width: 260px; }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-toggle { display: flex; }
+    .slide { padding: 40px 20px; }
   }
 
   .slide-content {
@@ -385,6 +435,9 @@
     text-align: center;
     user-select: none;
   }
+  @media (max-width: 700px) {
+    .slide-nav { bottom: 12px; padding: 4px 12px; gap: 8px; }
+  }
 
   .member-table {
     width: 100%;
@@ -445,6 +498,10 @@
     <button class="nav-item" data-slide="20" onclick="goSlide(20)"><span class="nav-num">20</span><span class="nav-label">Процесс вступления</span></button>
     <button class="nav-item" data-slide="21" onclick="goSlide(21)"><span class="nav-num">21</span><span class="nav-label">Материалы</span></button>
   </aside>
+
+  <!-- Sidebar toggle -->
+  <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
   <!-- SLIDES -->
   <div class="stage">
@@ -1004,6 +1061,23 @@
   }
   function nextSlide() { goSlide(current + 1); }
   function prevSlide() { goSlide(current - 1); }
+
+  // Sidebar toggle
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+  }
+  // Close sidebar on nav click (mobile)
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 700) {
+        document.querySelector('.sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('visible');
+      }
+    });
+  });
 
   // Restore last slide
   try { const saved = parseInt(localStorage.getItem('akrk-slide')); if (!isNaN(saved) && saved < total) { current = saved; } } catch(e) {}
