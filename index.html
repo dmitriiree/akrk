@@ -443,7 +443,7 @@
     <button class="nav-item" data-slide="16" onclick="goSlide(16)"><span class="nav-num">16</span><span class="nav-label">🎙 Президент онлайн</span></button>
     <button class="nav-item" data-slide="17" onclick="goSlide(17)"><span class="nav-num">17</span><span class="nav-label">🎯 Айсбрейкер</span></button>
     <button class="nav-item" data-slide="18" onclick="goSlide(18)"><span class="nav-num">18</span><span class="nav-label">🎮 Квиз</span></button>
-    <button class="nav-item" data-slide="19" onclick="goSlide(19)"><span class="nav-num">19</span><span class="nav-label">🤝 Тимбилдинг</span></button>
+    <button class="nav-item" data-slide="19" onclick="goSlide(19)"><span class="nav-num">19</span><span class="nav-label">👥 Работа в группах</span></button>
 
     <div class="nav-section-label">Вступление</div>
     <button class="nav-item" data-slide="20" onclick="goSlide(20)"><span class="nav-num">20</span><span class="nav-label">Процесс вступления</span></button>
@@ -863,7 +863,7 @@
   <div class="slide-content">
     <div class="section-label inter">🎮 Интерактив</div>
     <h2>Квиз по материалам</h2>
-    <p>10–15 вопросов по содержанию сессии. Участники отвечают с телефонов. Real-time лидерборд. Призы топ-3.</p>
+    <p>10–15 вопросов по содержанию сессии. Участники отвечают с телефонов. Real-time лидерборд. Призы топ-3. <em>Если время позволяет.</em></p>
     <div class="interactive-box">
       <h3 style="font-size:16px;">Kahoot! или Slido</h3>
       <p>Ссылка появится здесь перед мероприятием</p>
@@ -881,19 +881,17 @@
   </div>
 </div>
 
-<!-- 20: Тимбилдинг -->
+<!-- 19: Работа в группах -->
 <div class="slide">
   <div class="slide-content">
-    <div class="section-label inter">🤝 Интерактив</div>
-    <h2>Тимбилдинг</h2>
-    <p>После программы — чтобы не разошлись сразу, а пообщались неформально.</p>
+    <div class="section-label inter">👥 Интерактив</div>
+    <h2>Работа в мини-группах</h2>
+    <p>После квиза разделимся на мини-группы для обсуждения. Цель — не просто поговорить, а вместе подумать: что бы вы хотели видеть от АКРК, какие проекты нужны сообществу, какие у вас есть идеи.</p>
     <div class="grid-2">
-      <div class="card"><h4>👥 Мини-группы</h4><p>Обсудить «что бы вы хотели видеть от АКРК»</p></div>
-      <div class="card"><h4>📸 Общие фото</h4><p>Для соцсетей и истории организации</p></div>
-      <div class="card"><h4>🍕 Еда и напитки</h4><p>Свободное общение</p></div>
-      <div class="card"><h4>💬 Вопросы спикерам</h4><p>Один на один вне сцены</p></div>
+      <div class="card"><h4>👥 Мини-группы</h4><p>Обсуждение в группах по 4-6 человек, фиксация идей</p></div>
+      <div class="card"><h4>💡 Презентация идей</h4><p>Каждая группа делится main мыслями с залом</p></div>
     </div>
-    <blockquote>Определить: формат, бюджет на еду/напитки, тайминг 30–60 минут</blockquote>
+    <blockquote>Формат: 15-20 мин обсуждение + 10 мин презентация. Далее — процесс вступления, Q&A и свободное общение.</blockquote>
   </div>
 </div>
 
@@ -932,11 +930,32 @@
 <div class="slide">
   <div class="slide-content">
     <div class="section-label">Подготовка</div>
-    <h2>Материалы и контакты</h2>
+    <h2>Материалы и завершение</h2>
+
+    <h3>Программа завершения</h3>
+    <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;">
+      <div style="background:var(--accent-bg);border:1px solid var(--accent-dim);border-radius:var(--radius);padding:10px 14px;text-align:center;flex:1;min-width:100px;">
+        <div style="font-size:16px;margin-bottom:2px;">🗣</div>
+        <div style="font-size:11px;font-weight:600;">Q&A</div>
+        <div style="font-size:9px;color:var(--text-muted);">Вопросы и ответы</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--accent-dim);border-radius:var(--radius);padding:10px 14px;text-align:center;flex:1;min-width:100px;">
+        <div style="font-size:16px;margin-bottom:2px;">📸</div>
+        <div style="font-size:11px;font-weight:600;">Общее фото</div>
+        <div style="font-size:9px;color:var(--text-muted);">На память</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--accent-dim);border-radius:var(--radius);padding:10px 14px;text-align:center;flex:1;min-width:100px;">
+        <div style="font-size:16px;margin-bottom:2px;">🍕</div>
+        <div style="font-size:11px;font-weight:600;">Еда и напитки</div>
+        <div style="font-size:9px;color:var(--text-muted);">Свободное общение</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:16px;">Материалы</h3>
     <div class="check"><input type="checkbox" id="m1"><label for="m1">Презентация (слайды)</label></div>
     <div class="check"><input type="checkbox" id="m2"><label for="m2">Брошюры для новых участников</label></div>
     <div class="check"><input type="checkbox" id="m3"><label for="m3">Анонс в соцсетях</label></div>
-    <div class="grid-2" style="margin-top:14px;">
+    <div class="grid-2" style="margin-top:8px;">
       <div class="card"><h4>🌐 Сайт АКРК</h4><p>koryosaram.org</p></div>
       <div class="card"><h4>📱 Telegram</h4><p>федеральный @akrk2018 · юг @akrk_south</p></div>
       <div class="card"><h4>📸 Instagram / YouTube</h4><p>@akrk_south</p></div>
