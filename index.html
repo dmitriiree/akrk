@@ -19,7 +19,13 @@
     --font: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; scroll-snap-type: none; }
+  }
   body {
     font-family: var(--font);
     background: var(--bg);
@@ -39,6 +45,7 @@
     padding: 48px 24px;
     position: relative;
     overflow: hidden;
+    scroll-snap-align: start;
   }
   .hero::before {
     content: '';
@@ -107,6 +114,7 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 80px 24px;
+    scroll-snap-align: start;
   }
   section:last-of-type { padding-bottom: 120px; }
 
