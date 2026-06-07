@@ -29,11 +29,9 @@
     overflow: hidden;
     height: 100vh;
   }
-
-  /* ===== Layout ===== */
   .app { display: flex; height: 100vh; }
 
-  /* ===== Sidebar ===== */
+  /* Sidebar */
   .sidebar {
     width: var(--nav-w);
     flex-shrink: 0;
@@ -45,10 +43,10 @@
     overflow-y: auto;
   }
   .sidebar-brand {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     padding: 0 8px;
     letter-spacing: -0.01em;
   }
@@ -60,13 +58,21 @@
     letter-spacing: 0.5px;
     margin-top: 2px;
   }
+  .nav-section-label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 10px 10px 4px;
+    opacity: 0.5;
+  }
   .nav-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 10px;
-    border-radius: 8px;
-    font-size: 13px;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
     color: var(--text-muted);
     cursor: pointer;
     transition: all 0.15s;
@@ -74,25 +80,22 @@
     background: none;
     text-align: left;
     width: 100%;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
   }
   .nav-item:hover { color: var(--text); background: var(--surface-hover); }
-  .nav-item.active {
-    color: var(--accent);
-    background: var(--accent-bg);
-  }
+  .nav-item.active { color: var(--accent); background: var(--accent-bg); }
   .nav-num {
     flex-shrink: 0;
-    width: 20px;
-    font-size: 10px;
+    width: 18px;
+    font-size: 9px;
     font-weight: 600;
     color: var(--text-muted);
     text-align: right;
   }
   .nav-item.active .nav-num { color: var(--accent); }
-  .nav-label { flex: 1; }
+  .nav-label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  /* ===== Main stage ===== */
+  /* Stage */
   .stage {
     flex: 1;
     position: relative;
@@ -109,50 +112,54 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 64px 72px;
+    padding: 48px 64px;
     overflow-y: auto;
   }
   @media (max-width: 700px) {
     .sidebar { display: none; }
-    .slide { padding: 40px 24px; }
+    .slide { padding: 32px 20px; }
   }
 
-  /* ===== Content inside slides ===== */
   .slide-content {
     max-width: 720px;
     margin: 0 auto;
     width: 100%;
   }
+  .slide-content.wide { max-width: 880px; }
 
   .section-label {
     display: inline-block;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     font-weight: 600;
   }
+  .section-label.fed { color: #5b9bd5; }
+  .section-label.reg { color: var(--accent); }
+  .section-label.inter { color: #a78bfa; }
+
   h2 {
-    font-size: clamp(28px, 3vw, 42px);
+    font-size: clamp(26px, 2.8vw, 38px);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   h3 {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
-    margin-top: 20px;
+    margin-top: 16px;
     margin-bottom: 6px;
     color: var(--text);
   }
-  p { font-size: 15px; color: var(--text-muted); margin-bottom: 10px; }
-  ul { list-style: none; margin-bottom: 12px; }
+  p { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+  ul { list-style: none; margin-bottom: 10px; }
   li {
     padding: 4px 0 4px 18px;
     position: relative;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--text-muted);
   }
   li::before {
@@ -161,113 +168,114 @@
     left: 0;
     color: var(--accent-dim);
   }
-  li.num::before { display: none; }
-  li.num { padding-left: 0; color: var(--text); }
 
-  /* Cards */
   .grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    margin: 14px 0;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    margin: 12px 0;
   }
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 14px;
+    padding: 12px;
     transition: border-color 0.2s;
   }
-  .card h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-  .card p { font-size: 13px; margin: 0; }
+  .card h4 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .card p { font-size: 12px; margin: 0; }
 
   blockquote {
     border-left: 2px solid var(--accent-dim);
-    margin: 14px 0;
-    padding: 10px 14px;
+    margin: 12px 0;
+    padding: 8px 12px;
     background: var(--accent-bg);
     border-radius: 0 var(--radius) var(--radius) 0;
     color: var(--text-muted);
     font-style: italic;
-    font-size: 14px;
+    font-size: 13px;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
   .video-wrap {
-    margin: 12px 0;
+    margin: 10px 0;
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--border);
   }
   .video-wrap iframe {
     width: 100%;
-    height: 340px;
+    height: 300px;
     display: block;
     border: none;
   }
-  @media (max-width: 600px) { .video-wrap iframe { height: 200px; } }
+  @media (max-width: 600px) { .video-wrap iframe { height: 180px; } }
 
-  /* Icebreaker cards */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .kpi-num { font-size: 22px; font-weight: 700; color: #5b9bd5; line-height: 1; }
+  .kpi-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+  .quarter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 12px 0;
+  }
+  @media (max-width: 600px) { .quarter-grid { grid-template-columns: 1fr; } }
+
   .ice-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin: 14px 0;
+    gap: 8px;
+    margin: 12px 0;
   }
   @media (max-width: 700px) { .ice-grid { grid-template-columns: 1fr; } }
   .ice-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 18px;
+    padding: 16px;
     text-align: center;
     transition: border-color 0.2s;
   }
-  .ice-icon { font-size: 28px; margin-bottom: 6px; }
-  .ice-card h4 { font-size: 14px; margin-bottom: 3px; }
-  .ice-card p { font-size: 12px; margin: 0; }
-
-  /* KPI */
-  .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 10px;
-    margin: 16px 0;
-  }
-  .kpi {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px 12px;
-    text-align: center;
-  }
-  .kpi-num { font-size: 26px; font-weight: 700; color: var(--accent); line-height: 1; }
-  .kpi-label { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
-
-  .quarter-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin: 14px 0;
-  }
-  @media (max-width: 600px) { .quarter-grid { grid-template-columns: 1fr; } }
+  .ice-icon { font-size: 24px; margin-bottom: 4px; }
+  .ice-card h4 { font-size: 13px; margin-bottom: 2px; }
+  .ice-card p { font-size: 11px; margin: 0; }
 
   .interactive-box {
     background: var(--surface);
     border: 1px dashed var(--accent-dim);
     border-radius: var(--radius);
-    padding: 28px;
+    padding: 24px;
     text-align: center;
-    margin: 18px 0;
+    margin: 14px 0;
   }
   .interactive-box h3 { margin-top: 0; }
-  .interactive-box p { font-size: 14px; max-width: 380px; margin: 6px auto 14px; }
+  .interactive-box p { font-size: 13px; max-width: 380px; margin: 6px auto 12px; }
   .btn {
     display: inline-block;
-    padding: 9px 20px;
+    padding: 8px 18px;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     background: var(--accent);
     color: #0f0f12;
@@ -282,59 +290,88 @@
     border: 1px solid var(--accent-dim);
     color: var(--accent);
   }
-
-  .check { margin: 5px 0; font-size: 13px; color: var(--text-muted); }
+  .check { margin: 4px 0; font-size: 12px; color: var(--text-muted); }
   .check input { margin-right: 6px; accent-color: var(--accent); }
 
-  /* Agenda */
   .agenda-list { counter-reset: agenda; }
   .agenda-item {
     counter-increment: agenda;
     display: flex;
-    gap: 14px;
+    gap: 12px;
     align-items: baseline;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: var(--radius);
-    margin: 3px 0;
+    margin: 2px 0;
     transition: background 0.2s;
   }
   .agenda-item:hover { background: var(--surface); }
   .agenda-num {
     flex-shrink: 0;
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 7px;
+    border-radius: 6px;
     background: var(--accent-bg);
     color: var(--accent);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
   }
-  .agenda-text { font-size: 14px; color: var(--text); }
+  .agenda-text { font-size: 13px; color: var(--text); }
   .agenda-text small { color: var(--text-muted); font-weight: 400; }
 
-  /* ===== Navigation controls ===== */
+  /* Photo placeholder */
+  .photo-placeholder {
+    width: 100%;
+    height: 200px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .photo-label {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.6);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    color: #fff;
+  }
+
   .slide-nav {
     position: fixed;
-    bottom: 24px;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 6px 16px;
+    padding: 4px 14px;
     z-index: 100;
   }
   .slide-nav button {
     background: none;
     border: none;
     color: var(--text-muted);
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     padding: 4px 6px;
     border-radius: 6px;
@@ -342,372 +379,549 @@
   }
   .slide-nav button:hover { color: var(--text); background: var(--surface-hover); }
   .slide-nav .counter {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
-    min-width: 48px;
+    min-width: 40px;
     text-align: center;
     user-select: none;
   }
 
-  @media (max-width: 700px) {
-    .slide-nav { bottom: 12px; padding: 4px 12px; gap: 8px; }
+  .member-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 10px 0;
+    font-size: 13px;
   }
+  .member-table th {
+    background: var(--surface);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  .member-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .member-table tr:last-child td { border: none; }
 </style>
 </head>
 <body>
 
 <div class="app">
 
-  <!-- ===== SIDEBAR ===== -->
+  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-      АКРК Пусан
-      <small>27 июня 2026</small>
-    </div>
-    <button class="nav-item active" data-slide="0" onclick="goSlide(0)">
-      <span class="nav-num">00</span>
-      <span class="nav-label">Обложка</span>
-    </button>
-    <button class="nav-item" data-slide="1" onclick="goSlide(1)">
-      <span class="nav-num">01</span>
-      <span class="nav-label">Повестка</span>
-    </button>
-    <button class="nav-item" data-slide="2" onclick="goSlide(2)">
-      <span class="nav-num">02</span>
-      <span class="nav-label">Что такое АКРК</span>
-    </button>
-    <button class="nav-item" data-slide="3" onclick="goSlide(3)">
-      <span class="nav-num">03</span>
-      <span class="nav-label">Видео: президент</span>
-    </button>
-    <button class="nav-item" data-slide="4" onclick="goSlide(4)">
-      <span class="nav-num">04</span>
-      <span class="nav-label">Наши результаты</span>
-    </button>
-    <button class="nav-item" data-slide="5" onclick="goSlide(5)">
-      <span class="nav-num">05</span>
-      <span class="nav-label">Что даёт членство</span>
-    </button>
-    <button class="nav-item" data-slide="6" onclick="goSlide(6)">
-      <span class="nav-num">06</span>
-      <span class="nav-label">Планы на 2-е полугодие</span>
-    </button>
-    <button class="nav-item" data-slide="7" onclick="goSlide(7)">
-      <span class="nav-num">07</span>
-      <span class="nav-label">Вступление</span>
-    </button>
-    <button class="nav-item" data-slide="8" onclick="goSlide(8)">
-      <span class="nav-num">08</span>
-      <span class="nav-label">🎯 Айсбрейкер</span>
-    </button>
-    <button class="nav-item" data-slide="9" onclick="goSlide(9)">
-      <span class="nav-num">09</span>
-      <span class="nav-label">🎮 Квиз</span>
-    </button>
-    <button class="nav-item" data-slide="10" onclick="goSlide(10)">
-      <span class="nav-num">10</span>
-      <span class="nav-label">🤝 Тимбилдинг</span>
-    </button>
-    <button class="nav-item" data-slide="11" onclick="goSlide(11)">
-      <span class="nav-num">11</span>
-      <span class="nav-label">Материалы</span>
-    </button>
+    <div class="sidebar-brand">АКРК Пусан<small>27 июня 2026</small></div>
+
+    <div class="nav-section-label">Вступление</div>
+    <button class="nav-item active" data-slide="0" onclick="goSlide(0)"><span class="nav-num">00</span><span class="nav-label">Обложка</span></button>
+    <button class="nav-item" data-slide="1" onclick="goSlide(1)"><span class="nav-num">01</span><span class="nav-label">Повестка</span></button>
+
+    <div class="nav-section-label">Федеральный уровень</div>
+    <button class="nav-item" data-slide="2" onclick="goSlide(2)"><span class="nav-num">02</span><span class="nav-label">Что такое АКРК</span></button>
+    <button class="nav-item" data-slide="3" onclick="goSlide(3)"><span class="nav-num">03</span><span class="nav-label">Три функции + видео</span></button>
+    <button class="nav-item" data-slide="4" onclick="goSlide(4)"><span class="nav-num">04</span><span class="nav-label">Итоги 2025</span></button>
+    <button class="nav-item" data-slide="5" onclick="goSlide(5)"><span class="nav-num">05</span><span class="nav-label">Членство и бюджет</span></button>
+    <button class="nav-item" data-slide="6" onclick="goSlide(6)"><span class="nav-num">06</span><span class="nav-label">Стратегия 2026</span></button>
+
+    <div class="nav-section-label">Региональный уровень (Юг)</div>
+    <button class="nav-item" data-slide="7" onclick="goSlide(7)"><span class="nav-num">07</span><span class="nav-label">АКРК Пусан</span></button>
+    <button class="nav-item" data-slide="8" onclick="goSlide(8)"><span class="nav-num">08</span><span class="nav-label">🏓 Турнир (28.02)</span></button>
+    <button class="nav-item" data-slide="9" onclick="goSlide(9)"><span class="nav-num">09</span><span class="nav-label">📚 Лекции (15-16.05)</span></button>
+    <button class="nav-item" data-slide="10" onclick="goSlide(10)"><span class="nav-num">10</span><span class="nav-label">🌍 Global Gathering</span></button>
+    <button class="nav-item" data-slide="11" onclick="goSlide(11)"><span class="nav-num">11</span><span class="nav-label">Медиа и инструменты</span></button>
+    <button class="nav-item" data-slide="12" onclick="goSlide(12)"><span class="nav-num">12</span><span class="nav-label">Что даёт членство</span></button>
+    <button class="nav-item" data-slide="13" onclick="goSlide(13)"><span class="nav-num">13</span><span class="nav-label">Планы Пусан H2</span></button>
+    <button class="nav-item" data-slide="14" onclick="goSlide(14)"><span class="nav-num">14</span><span class="nav-label">Процесс вступления</span></button>
+
+    <div class="nav-section-label">Интерактив</div>
+    <button class="nav-item" data-slide="15" onclick="goSlide(15)"><span class="nav-num">15</span><span class="nav-label">🎙 Президент онлайн</span></button>
+    <button class="nav-item" data-slide="16" onclick="goSlide(16)"><span class="nav-num">16</span><span class="nav-label">🎯 Айсбрейкер</span></button>
+    <button class="nav-item" data-slide="17" onclick="goSlide(17)"><span class="nav-num">17</span><span class="nav-label">🎮 Квиз</span></button>
+    <button class="nav-item" data-slide="18" onclick="goSlide(18)"><span class="nav-num">18</span><span class="nav-label">🤝 Тимбилдинг</span></button>
+    <button class="nav-item" data-slide="19" onclick="goSlide(19)"><span class="nav-num">19</span><span class="nav-label">Материалы и контакты</span></button>
   </aside>
 
-  <!-- ===== SLIDES ===== -->
+  <!-- SLIDES -->
   <div class="stage">
     <div class="slides-wrapper" id="slidesWrapper">
 
-      <!-- SLIDE 0: Hero -->
-      <div class="slide" style="text-align: center;">
-        <div class="slide-content" style="max-width:600px;">
-          <div style="display:inline-block;padding:5px 14px;border:1px solid var(--accent-dim);border-radius:100px;font-size:12px;letter-spacing:.5px;color:var(--accent);margin-bottom:20px;">Открытая встреча · 27 июня 2026</div>
-          <h2 style="font-size:clamp(36px,5vw,60px);margin-bottom:8px;">АКРК <span style="color:var(--accent);">Пусан</span></h2>
-          <p style="font-size:clamp(15px,1.8vw,20px);max-width:480px;margin:0 auto 32px;">Информационная сессия для корё-сарам и всех заинтересованных</p>
-          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-            <button class="btn" onclick="goSlide(1)">К повестке</button>
-            <button class="btn btn-outline" onclick="goSlide(8)">🎯 Айсбрейкер</button>
-          </div>
-          <div style="margin-top:36px;font-size:12px;color:var(--border);letter-spacing:1px;">↓ стрелки / колесо мыши для навигации</div>
-        </div>
-      </div>
+<!-- 00: Cover -->
+<div class="slide" style="text-align:center;">
+  <div class="slide-content" style="max-width:600px;">
+    <div style="display:inline-block;padding:4px 12px;border:1px solid var(--accent-dim);border-radius:100px;font-size:11px;letter-spacing:.5px;color:var(--accent);margin-bottom:16px;">Открытая встреча · 27 июня 2026</div>
+    <h2 style="font-size:clamp(34px,4.5vw,56px);margin-bottom:6px;">АКРК <span style="color:var(--accent);">Пусан</span></h2>
+    <p style="font-size:clamp(14px,1.6vw,18px);max-width:460px;margin:0 auto 24px;">Информационная сессия для корё-сарам и всех заинтересованных</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn" onclick="goSlide(1)">К повестке</button>
+      <button class="btn btn-outline" onclick="goSlide(15)">🎙 Президент онлайн</button>
+    </div>
+    <div style="margin-top:28px;font-size:11px;color:var(--border);letter-spacing:1px;">← → / колесо / свайп</div>
+  </div>
+</div>
 
-      <!-- SLIDE 1: Повестка -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Повестка</div>
-          <h2>Что вас ждёт</h2>
-          <div class="agenda-list">
-            <div class="agenda-item">
-              <div class="agenda-num">1</div>
-              <div class="agenda-text">Приветствие + Айсбрейкер <small>· знакомство</small></div>
-            </div>
-            <div class="agenda-item" style="background:var(--accent-bg);border-radius:var(--radius);">
-              <div class="agenda-num" style="background:var(--accent);color:#0f0f12;">🎙</div>
-              <div class="agenda-text" style="color:var(--accent);font-weight:600;">Видеоприветствие президента АКРК <small style="color:var(--accent-dim);">· по видеосвязи</small></div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">3</div>
-              <div class="agenda-text">Что такое АКРК <small>· миссия и цели</small></div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">4</div>
-              <div class="agenda-text">Наши результаты <small>· 1-е полугодие 2026</small></div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">5</div>
-              <div class="agenda-text">Что даёт членство <small>· преимущества</small></div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">6</div>
-              <div class="agenda-text">Членские взносы <small>· на что идут</small></div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">7</div>
-              <div class="agenda-text">Планы на 2-е полугодие</div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">8</div>
-              <div class="agenda-text">Процесс вступления</div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">9</div>
-              <div class="agenda-text">Квиз <small>· проверь себя</small></div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">10</div>
-              <div class="agenda-text" style="color:var(--accent);">Тимбилдинг — неформальное общение</div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num">11</div>
-              <div class="agenda-text">Вопросы и ответы</div>
-            </div>
+<!-- 01: Agenda -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label">Повестка</div>
+    <h2>Что вас ждёт</h2>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:240px;">
+        <div class="agenda-list">
+          <div class="agenda-item"><div class="agenda-num">1</div><div class="agenda-text">Приветствие + Айсбрейкер</div></div>
+          <div class="agenda-item" style="background:var(--accent-bg);border-radius:var(--radius);">
+            <div class="agenda-num" style="background:var(--accent);color:#0f0f12;">🎙</div>
+            <div class="agenda-text" style="color:var(--accent);font-weight:600;">Видеоприветствие президента</div>
           </div>
+          <div class="agenda-item"><div class="agenda-num">3</div><div class="agenda-text">Что такое АКРК <small>· миссия</small></div></div>
+          <div class="agenda-item"><div class="agenda-num">4</div><div class="agenda-text">Итоги АКРК за 2025 <small>· федеральный уровень</small></div></div>
+          <div class="agenda-item"><div class="agenda-num">5</div><div class="agenda-text">Стратегия 2026 <small>· цели и векторы</small></div></div>
+          <div class="agenda-item"><div class="agenda-num">6</div><div class="agenda-text">АКРК Пусан <small>· региональный уровень</small></div></div>
         </div>
       </div>
+      <div style="flex:1;min-width:240px;">
+        <div class="agenda-list">
+          <div class="agenda-item"><div class="agenda-num">7</div><div class="agenda-text">События Пусана <small>· 3 мероприятия с фото</small></div></div>
+          <div class="agenda-item"><div class="agenda-num">8</div><div class="agenda-text">Что даёт членство <small>· взносы</small></div></div>
+          <div class="agenda-item"><div class="agenda-num">9</div><div class="agenda-text">Планы на 2-е полугодие</div></div>
+          <div class="agenda-item"><div class="agenda-num">10</div><div class="agenda-text">Процесс вступления</div></div>
+          <div class="agenda-item"><div class="agenda-num">11</div><div class="agenda-text">Квиз по материалам</div></div>
+          <div class="agenda-item"><div class="agenda-num">12</div><div class="agenda-text" style="color:var(--accent);">Тимбилдинг — неформальное общение</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <!-- SLIDE 2: Что такое АКРК -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Блок 1</div>
-          <h2>Что такое АКРК</h2>
-          <p>Ассоциация корё-сарам Республики Корея — объединение, которое даёт сообществу голос во взаимодействии с государством, мэриями и министерствами.</p>
-          <ul>
-            <li>В Корее государство работает с организованными группами, а не с отдельными людьми</li>
-            <li>Три функции: <strong>собрать</strong> (агрегация), <strong>объяснить</strong> (артикуляция), <strong>соединить</strong> (медиация)</li>
-            <li>Без структуры корё-сарам — совокупность отдельных историй. Со структурой — участники процесса</li>
-          </ul>
-        </div>
+<!-- 02: Что такое АКРК (federal) -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label fed">🟦 Федеральный уровень</div>
+    <h2>Что такое АКРК</h2>
+    <p><strong>Ассоциация Корё-сарам в Республике Корея</strong> — официальная организация, зарегистрированная в МИД РК (12.12.2018, рег. №195 от 12.08.2020), представляющая интересы корейцев постсоветского пространства.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;">
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center;">
+        <div style="font-size:11px;color:var(--text-muted);">Год основания</div>
+        <div style="font-size:18px;font-weight:700;color:#5b9bd5;">2018</div>
       </div>
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center;">
+        <div style="font-size:11px;color:var(--text-muted);">Регистрация</div>
+        <div style="font-size:18px;font-weight:700;color:#5b9bd5;">МИД РК</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center;">
+        <div style="font-size:11px;color:var(--text-muted);">Головной офис</div>
+        <div style="font-size:18px;font-weight:700;color:#5b9bd5;">Ансан</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px;text-align:center;">
+        <div style="font-size:11px;color:var(--text-muted);">Президент</div>
+        <div style="font-size:14px;font-weight:600;color:#5b9bd5;">Тен Жанна</div>
+      </div>
+    </div>
+    <p style="font-size:13px;"><strong>Миссия:</strong> Защита прав диаспоры, содействие социальной интеграции, сохранение культурной идентичности корё-сарам в РК.</p>
+    <p style="font-size:13px;"><strong>Три опоры:</strong> Идентичность · Рост · Взаимодействие</p>
+  </div>
+</div>
 
-      <!-- SLIDE 3: Видео президента + 3 функции -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Блок 1 · Видео</div>
-          <h2>Президент АКРК — кто мы и зачем</h2>
-          <div class="video-wrap">
-            <iframe src="https://www.youtube.com/embed/NpSynTB0NL0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="grid-2">
-            <div class="card"><h4>Собрать</h4><p>Объединение голосов корё-сарам в единую позицию</p></div>
-            <div class="card"><h4>Объяснить</h4><p>Формулирование запросов сообщества понятным языком</p></div>
-            <div class="card"><h4>Соединить</h4><p>Вывод сообщества к мэриям, министерствам, госведомствам</p></div>
-          </div>
-        </div>
-      </div>
+<!-- 03: Три функции + видео -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label fed">🟦 Федеральный уровень</div>
+    <h2>Зачем нужна организация</h2>
+    <p>Главный аргумент — из ролика президента АКРК:</p>
+    <ul>
+      <li>В Корее государство взаимодействует с <strong>организованными группами</strong>, а не с отдельными людьми</li>
+      <li>Один человек — частная история. Сигнал к изменениям — когда проблема повторяется у многих</li>
+      <li>Без структуры корё-сарам — совокупность отдельных историй. Со структурой — <strong>участники процесса</strong></li>
+    </ul>
+    <h3>Три функции АКРК</h3>
+    <div class="grid-3">
+      <div class="card"><h4>📥 Собрать</h4><p>Агрегация голосов и проблем сообщества</p></div>
+      <div class="card"><h4>📢 Объяснить</h4><p>Артикуляция интересов государству и обществу</p></div>
+      <div class="card"><h4>🔗 Соединить</h4><p>Медиация между общиной и институтами</p></div>
+    </div>
+    <div class="video-wrap" style="margin-top:8px;">
+      <iframe src="https://www.youtube.com/embed/NpSynTB0NL0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
 
-      <!-- SLIDE 4: Результаты -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Блок 2</div>
-          <h2>Наши результаты за 1-е полугодие 2026</h2>
-          <div class="kpi-row">
-            <div class="kpi"><div class="kpi-num">28</div><div class="kpi-label">участников турнира из 10 городов</div></div>
-            <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">лекции + экскурсия</div></div>
-            <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">медиа-канала запущено</div></div>
-            <div class="kpi"><div class="kpi-num">7</div><div class="kpi-label">рабочих направлений</div></div>
-          </div>
-          <div class="grid-2">
-            <div class="card"><h4>🏓 Турнир (28.02)</h4><p>28 участников, 10 городов, до 60 чел. на площадке</p></div>
-            <div class="card"><h4>📚 Лекции (15-16.05)</h4><p>3 лекции + экскурсия в музей Пусана. Вадим Акуленко</p></div>
-            <div class="card"><h4>🌍 Global Gathering (23.05)</h4><p>Стенд АКРК, нац. кухня, костюмы, сувениры</p></div>
-            <div class="card"><h4>📱 Медиа</h4><p>Instagram, Facebook, YouTube. KIIP-тренажёр. Контактная база</p></div>
-          </div>
-        </div>
-      </div>
+<!-- 04: Федеральные итоги 2025 -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label fed">🟦 Федеральный уровень · 2025</div>
+    <h2>Итоги года</h2>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">127</div><div class="kpi-label">млн ₩ доход</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">110</div><div class="kpi-label">млн ₩ расход</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">47,8</div><div class="kpi-label">млн ₩ членские взносы</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">+6,2</div><div class="kpi-label">млн ₩ результат</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card"><h4>🏆 Премия по правам человека</h4><p>15 000 000 ₩ — признание работы АКРК на государственном уровне</p></div>
+      <div class="card"><h4>🏛 Памятник в Ансане</h4><p>Открытие памятника корё-сарам — символ признания вклада диаспоры</p></div>
+      <div class="card"><h4>🎬 Документальный фильм</h4><p>«Армия независимости: неоконченная война» — спонсирование и перевод на русский</p></div>
+      <div class="card"><h4>📚 KIIP 5 уровень</h4><p>Видеокурсы по программе интеграции — бесплатный ресурс для сообщества</p></div>
+      <div class="card"><h4>🧑‍🎓 Молодёжное движение</h4><p>10 клубов по интересам · 25 мероприятий за год</p></div>
+      <div class="card"><h4>🤝 Объединение MOST</h4><p>Поддержка детей и семей корё-сарам в корейских школах</p></div>
+    </div>
+    <blockquote>Исторические лагеря, экскурсии, молодёжные форумы, выставка Хегая Мирона</blockquote>
+  </div>
+</div>
 
-      <!-- SLIDE 5: Членство -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Блок 3</div>
-          <h2>Что даёт членство</h2>
-          <div class="grid-2">
-            <div class="card"><h4>Нетворкинг</h4><p>Предприниматели, профессионалы, единомышленники</p></div>
-            <div class="card"><h4>Мероприятия</h4><p>Турниры, лекции, экскурсии, фестивали</p></div>
-            <div class="card"><h4>Волонтёрские часы</h4><p>1365 — учитываются при ПМЖ и гражданстве</p></div>
-            <div class="card"><h4>Стипендия</h4><p>Реальный кейс — Ирина Ким</p></div>
-            <div class="card"><h4>Поддержка</h4><p>Право, миграция, медицина, образование</p></div>
-            <div class="card"><h4>Сообщество</h4><p>Связи, взаимопомощь среди своих</p></div>
-          </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
-            <a class="btn btn-outline" href="https://youtube.com/shorts/yYr2mpMD9n0" target="_blank" style="font-size:12px;">▶ Shorts: нетворкинг</a>
-            <a class="btn btn-outline" href="https://youtube.com/shorts/0gjtNFgQF9Y" target="_blank" style="font-size:12px;">▶ Shorts: личная история</a>
-          </div>
-        </div>
-      </div>
+<!-- 05: Членство и бюджет -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label fed">🟦 Федеральный уровень</div>
+    <h2>Членство и взносы</h2>
+    <table class="member-table">
+      <tr><th></th><th>Действительный член</th><th>Обычный член</th></tr>
+      <tr><td style="font-weight:600;color:var(--text);">Взнос</td><td>10 000 ₩ / мес</td><td>30 000 ₩ вступительный</td></tr>
+      <tr><td style="font-weight:600;color:var(--text);">Право голоса</td><td>Да</td><td>Нет</td></tr>
+      <tr><td style="font-weight:600;color:var(--text);">Право быть избранным</td><td>Да</td><td>Нет</td></tr>
+      <tr><td style="font-weight:600;color:var(--text);">Доступ к программам</td><td>Полный</td><td>Да</td></tr>
+    </table>
+    <h3>На что идут взносы</h3>
+    <ul>
+      <li>Проекты: спикеры, материалы, площадки, техническое сопровождение</li>
+      <li>Софинансирование 50/50 с госагентствами (стандартная практика в Корее)</li>
+      <li>Операционная устойчивость организации</li>
+      <li>Ежегодный буклет + финансовый отчёт для действительных членов</li>
+    </ul>
+    <blockquote>Взносы — не плата кому-то, а вклад в общий устойчивый ресурс сообщества</blockquote>
+  </div>
+</div>
 
-      <!-- SLIDE 6: Планы -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Блок 4</div>
-          <h2>Планы на 2-е полугодие</h2>
-          <div class="quarter-grid">
-            <div>
-              <h3>Q3 · Июль — Сентябрь</h3>
-              <ul>
-                <li>Волонтёрство: донорство крови, 1365</li>
-                <li>Молодёжное движение: пикники, спорт</li>
-                <li>Лекции со Светланой Цай (сентябрь)</li>
-                <li>Взаимодействие с мэрией Пусана</li>
-                <li>Развитие партнёрств и соцсетей</li>
-                <li>KIIP-тренажёр: 5-й уровень</li>
-              </ul>
-            </div>
-            <div>
-              <h3>Q4 · Октябрь — Декабрь</h3>
-              <ul>
-                <li>Шахматный турнир в Пусане</li>
-                <li>Исторический лагерь в Теджоне</li>
-                <li>Подарки к Чусок</li>
-                <li>Подкасты</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+<!-- 06: Стратегия 2026 -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label fed">🟦 Федеральный уровень</div>
+    <h2>Стратегия АКРК на 2026</h2>
+    <p>Три базовых вектора — каркас всей деятельности организации:</p>
+    <div class="grid-2">
+      <div class="card" style="border-left:3px solid #5b9bd5;">
+        <h4>1. Историческая справедливость</h4>
+        <p>Восстановление прав, правовой статус корё-сарам, работа с Парламентом, визовые вопросы (F4/F1/F3), регистрация наследия в ЮНЕСКО «Память мира»</p>
       </div>
+      <div class="card" style="border-left:3px solid #5b9bd5;">
+        <h4>2. Устойчивое развитие</h4>
+        <p>Правовая навигация, защита трудовых прав, модель «семья — школа — сообщество», билингвальное образование, профессиональная переподготовка</p>
+      </div>
+      <div class="card" style="border-left:3px solid #5b9bd5;">
+        <h4>3. Вклад в Корею</h4>
+        <p>Образ корё-сарам как ресурса развития страны, деловые связи со странами СНГ, предпринимательство, участие в демографических программах</p>
+      </div>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/ka4CFgY_mP8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
 
-      <!-- SLIDE 7: Вступление -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Блок 5</div>
-          <h2>Процесс вступления</h2>
-          <ul>
-            <li>Заполнение формы вступления</li>
-            <li>Добавление в Telegram-группу АКРК Пусан</li>
-            <li>Действительные (с взносами) и обычные члены</li>
-          </ul>
-          <h3 style="margin-top:24px;">На что идут членские взносы</h3>
-          <ul>
-            <li>Проекты: спикеры, материалы, площадки</li>
-            <li>Софинансирование 50/50 с госагентствами</li>
-            <li>Операционная устойчивость организации</li>
-            <li>Ежегодный буклет + финансовый отчёт</li>
-          </ul>
-          <div class="video-wrap" style="margin-top:10px;">
-            <iframe src="https://www.youtube.com/embed/ka4CFgY_mP8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </div>
+<!-- 07: Переход на региональный уровень -->
+<div class="slide">
+  <div class="slide-content" style="text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">🟧</div>
+    <div class="section-label reg">Региональный уровень</div>
+    <h2>АКРК Пусан</h2>
+    <p style="max-width:520px;margin:0 auto 16px;">Региональное представительство АКРК в Пусане и южном регионе. Представитель в Совете директоров — <strong>Хан Владимир</strong>.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 24px;text-align:center;">
+        <div style="font-size:11px;color:var(--text-muted);">Telegram</div>
+        <div style="font-size:16px;font-weight:600;color:var(--accent);">@akrk_south</div>
       </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 24px;text-align:center;">
+        <div style="font-size:11px;color:var(--text-muted);">Instagram</div>
+        <div style="font-size:16px;font-weight:600;color:var(--accent);">@akrk_south</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;font-size:13px;">За 1-е полугодие 2026 проведено <strong>3 крупных события</strong> + запущены медиа-каналы и инструменты.</p>
+  </div>
+</div>
 
-      <!-- SLIDE 8: Айсбрейкер -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">🎯 Интерактив</div>
-          <h2>Айсбрейкер</h2>
-          <p>5–10 минут. Расслабить людей, создать контакт до контента. Многие придут впервые.</p>
-          <div class="ice-grid">
-            <div class="ice-card">
-              <div class="ice-icon">🎭</div>
-              <h4>Два факта и ложь</h4>
-              <p>Каждый называет три факта, остальные угадывают ложь</p>
-            </div>
-            <div class="ice-card">
-              <div class="ice-icon">🔍</div>
-              <h4>Найди человека...</h4>
-              <p>Карточки с заданиями: «кто живёт в Пусане меньше года» и т.д.</p>
-            </div>
-            <div class="ice-card">
-              <div class="ice-icon">👋</div>
-              <h4>Быстрые интро</h4>
-              <p>По кругу: имя, откуда, один факт о себе</p>
-            </div>
-          </div>
-        </div>
+<!-- 08: Турнир -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label reg">🟧 Событие · 28.02.2026</div>
+    <h2>🏓 III Турнир по настольному теннису</h2>
+    <div class="photo-placeholder">
+      <div style="text-align:center;padding:12px;">
+        <div style="font-size:32px;margin-bottom:4px;">🏓</div>
+        <div style="font-size:11px;color:var(--text-muted);">Фото с турнира: 28 участников из 10 городов</div>
       </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">28</div><div class="kpi-label">участников</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10</div><div class="kpi-label">городов Кореи</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">60</div><div class="kpi-label">человек на площадке</div></div>
+    </div>
+    <ul>
+      <li>Совместно с Ассоциацией настольного тенниса Пусана — важный шаг интеграции с местным сообществом</li>
+      <li>Почетный гость — Генеральный консул Республики Казахстан в Пусане</li>
+      <li>Спонсоры: церковь SOOYOUNGRO, ROYAL FOOD, NOALYUT</li>
+      <li>5 женщин и 23 мужчины; круговые и групповые этапы + плей-офф</li>
+    </ul>
+  </div>
+</div>
 
-      <!-- SLIDE 9: Квиз -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">🎮 Интерактив</div>
-          <h2>Квиз по материалам сессии</h2>
-          <p>10–15 вопросов. Участники отвечают с телефонов. Real-time лидерборд. Призы победителям.</p>
-          <div class="interactive-box">
-            <h3>Kahoot! или Slido</h3>
-            <p>Ссылка появится здесь перед мероприятием</p>
-            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-              <a class="btn" href="#" onclick="alert('Ссылка на Kahoot! будет добавлена')">Kahoot!</a>
-              <a class="btn btn-outline" href="#" onclick="alert('Ссылка на Slido будет добавлена')">Slido</a>
-            </div>
-          </div>
-          <div style="margin-top:10px;">
-            <div class="check"><input type="checkbox" id="qz1"><label for="qz1">Выбрать платформу</label></div>
-            <div class="check"><input type="checkbox" id="qz2"><label for="qz2">Составить 10–15 вопросов</label></div>
-            <div class="check"><input type="checkbox" id="qz3"><label for="qz3">Подготовить призы топ-3</label></div>
-            <div class="check"><input type="checkbox" id="qz4"><label for="qz4">Протестировать Wi-Fi, экран, звук</label></div>
-          </div>
-        </div>
+<!-- 09: Лекции -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label reg">🟧 Событие · 15–16.05.2026</div>
+    <h2>📚 Лекции Вадима Акуленко</h2>
+    <div class="photo-placeholder">
+      <div style="text-align:center;padding:12px;">
+        <div style="font-size:32px;margin-bottom:4px;">📚</div>
+        <div style="font-size:11px;color:var(--text-muted);">Фото: экскурсия в Пусанский музей + лекции в церкви Суён-ро</div>
       </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">3</div><div class="kpi-label">лекции</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">30</div><div class="kpi-label">участников за 2 дня</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">45K</div><div class="kpi-label">экспонатов в музее</div></div>
+    </div>
+    <ul>
+      <li>Лектор — <strong>Акуленко Вадим Сергеевич</strong> (канд. ист. наук, доцент ДВФУ, член АКРК)</li>
+      <li>День 1: экскурсия в Пусанский гос. музей + лекция «Что в имени моём: понгван»</li>
+      <li>День 2: «Переселение русскоговорящих корейцев» + «Места памяти корё-сарам»</li>
+      <li>Семьи с детьми, гости из других городов, живые интервью участников</li>
+    </ul>
+  </div>
+</div>
 
-      <!-- SLIDE 10: Тимбилдинг -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">🤝 Интерактив</div>
-          <h2>Тимбилдинг</h2>
-          <p>После программы — чтобы люди не разошлись сразу, а пообщались неформально.</p>
-          <div class="grid-2">
-            <div class="card"><h4>👥 Мини-группы</h4><p>Обсудить «что бы вы хотели видеть от АКРК» и представить</p></div>
-            <div class="card"><h4>📸 Общие фото</h4><p>Для соцсетей и истории организации</p></div>
-            <div class="card"><h4>🍕 Еда и напитки</h4><p>Неформальная часть, свободное общение</p></div>
-            <div class="card"><h4>💬 Вопросы спикерам</h4><p>Один на один, вне сцены</p></div>
-          </div>
-          <blockquote>Определить: формат, бюджет на еду/напитки, тайминг 30–60 минут.</blockquote>
-        </div>
+<!-- 10: Global Gathering -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label reg">🟧 Событие · 23.05.2026</div>
+    <h2>🌍 Global Gathering — фестиваль народов мира</h2>
+    <div class="photo-placeholder">
+      <div style="text-align:center;padding:12px;">
+        <div style="font-size:32px;margin-bottom:4px;">🌍</div>
+        <div style="font-size:11px;color:var(--text-muted);">Фото: стенд АКРК на Busan Global Citizen Festival</div>
       </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10+</div><div class="kpi-label">стран-участниц</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">12</div><div class="kpi-label">человек команда</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:var(--accent);">🤝</div><div class="kpi-label">Kim Jong Wan</div></div>
+    </div>
+    <ul>
+      <li><strong>제21회 세계시민축제</strong> — крупнейший международный фестиваль Пусана, организованный Минюстом РК и мэрией при поддержке Busan Global City Foundation</li>
+      <li>Стенд АКРК: национальные костюмы, выпечка, живое общение о корё-сарам</li>
+      <li>Знакомство с <strong>Kim Jong Wan</strong> — представителем образовательного центра по истории корейцев Средней Азии. Предложил сотрудничество</li>
+    </ul>
+  </div>
+</div>
 
-      <!-- SLIDE 11: Материалы -->
-      <div class="slide">
-        <div class="slide-content">
-          <div class="section-label">Подготовка</div>
-          <h2>Презентационные материалы</h2>
-          <div class="check"><input type="checkbox" id="m1"><label for="m1">Презентация (слайды: миссия, деятельность, планы)</label></div>
-          <div class="check"><input type="checkbox" id="m2"><label for="m2">Брошюры / раздатка для новых участников</label></div>
-          <div class="check"><input type="checkbox" id="m3"><label for="m3">Анонс собрания (соцсети, мессенджеры)</label></div>
-          <h3>Можно переиспользовать</h3>
-          <div class="grid-2">
-            <div class="card"><h4>Презентация 22.02</h4><p>slides.pptx, прошлое собрание</p></div>
-            <div class="card"><h4>Результаты опроса</h4><p>Оформленная презентация</p></div>
-            <div class="card"><h4>Стратегия 2026</h4><p>стратегия_2026_пусан_v1.pptx</p></div>
-            <div class="card"><h4>Промо материалы</h4><p>Баннеры, rollup, PDF, лого</p></div>
-          </div>
-          <div style="margin-top:24px;text-align:center;font-size:13px;color:var(--text-muted);">
-            <strong style="color:var(--accent);">АКРК Пусан</strong> · @akrk_south<br>
-            <a href="https://t.me/akrk_south" target="_blank">Telegram</a> ·
-            <a href="https://instagram.com/akrk_south" target="_blank">Instagram</a> ·
-            <a href="https://youtube.com/@akrk_south" target="_blank">YouTube</a> ·
-            <a href="https://facebook.com/akrk_south" target="_blank">Facebook</a>
-          </div>
-        </div>
+<!-- 11: Медиа и инструменты -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label reg">🟧 Региональный уровень</div>
+    <h2>Медиа и внутренняя работа</h2>
+    <div class="grid-2">
+      <div class="card"><h4>📱 Соцсети</h4><p>Запущены Instagram, Facebook, YouTube каналы АКРК Пусан (@akrk_south)</p></div>
+      <div class="card"><h4>💻 KIIP-тренажёр</h4><p>Онлайн-инструмент подготовки к экзамену — бесплатно для сообщества</p></div>
+      <div class="card"><h4>📇 Контактная база</h4><p>Структурирована и актуализирована</p></div>
+      <div class="card"><h4>📋 Опрос сообщества</h4><p>Выявлены ключевые боли: языковой барьер, адаптация, дети</p></div>
+      <div class="card"><h4>🤝 Совещание 22.03</h4><p>Определены 7 рабочих направлений на 2026 год</p></div>
+      <div class="card"><h4>🗣 Корейский язык</h4><p>Бесплатные разговорные занятия каждую среду 10:00, Хёнде. Индивидуальные уроки</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 12: Членство (преимущества) -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label reg">🟧 Региональный уровень</div>
+    <h2>Что даёт членство</h2>
+    <div class="grid-2">
+      <div class="card"><h4>🤝 Нетворкинг</h4><p>Предприниматели, профессионалы, единомышленники</p></div>
+      <div class="card"><h4>🏆 Мероприятия</h4><p>Турниры, лекции, экскурсии, фестивали со скидками для членов</p></div>
+      <div class="card"><h4>⏱ Волонтёрские часы</h4><p>1365 — учитываются при ПМЖ и гражданстве</p></div>
+      <div class="card"><h4>🎓 Стипендия</h4><p>Грант «На крыльях бизнеса» и реальный кейс Ирины Ким</p></div>
+      <div class="card"><h4>🩺 Поддержка</h4><p>Право, миграция, медицина, образование — информационная навигация</p></div>
+      <div class="card"><h4>👥 Сообщество</h4><p>Связи, взаимопомощь среди своих в любой точке Кореи</p></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+      <a class="btn btn-outline" href="https://youtube.com/shorts/yYr2mpMD9n0" target="_blank" style="font-size:11px;">▶ Shorts: нетворкинг</a>
+      <a class="btn btn-outline" href="https://youtube.com/shorts/0gjtNFgQF9Y" target="_blank" style="font-size:11px;">▶ Shorts: личная история</a>
+    </div>
+  </div>
+</div>
+
+<!-- 13: Планы Пусан H2 -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label reg">🟧 Региональный уровень</div>
+    <h2>Планы на 2-е полугодие</h2>
+    <div class="quarter-grid">
+      <div>
+        <h3>Q3 · Июль — Сентябрь</h3>
+        <ul>
+          <li>Волонтёрство: донорство крови, 1365</li>
+          <li>Молодёжное движение: пикники, спорт, образование</li>
+          <li>Лекции со Светланой Цай (сентябрь)</li>
+          <li>Взаимодействие с мэрией Пусана</li>
+          <li>Развитие партнёрств и соцсетей</li>
+          <li>KIIP-тренажёр: 5-й уровень</li>
+        </ul>
       </div>
+      <div>
+        <h3>Q4 · Октябрь — Декабрь</h3>
+        <ul>
+          <li>♟ Шахматный турнир в Пусане</li>
+          <li>🏕 Исторический лагерь в Теджоне</li>
+          <li>🎁 Подарки к Чусок партнёрам</li>
+          <li>🎙 Подкасты</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 14: Процесс вступления -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label reg">🟧 Региональный уровень</div>
+    <h2>Процесс вступления</h2>
+    <div style="display:flex;gap:10px;margin:14px 0;flex-wrap:wrap;">
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">📝</div>
+        <div style="font-size:12px;font-weight:600;">1. Заполнить форму</div>
+        <div style="font-size:10px;color:var(--text-muted);">Онлайн или у регионального отделения</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">💰</div>
+        <div style="font-size:12px;font-weight:600;">2. Выбрать тип членства</div>
+        <div style="font-size:10px;color:var(--text-muted);">Действительный / обычный</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">📢</div>
+        <div style="font-size:12px;font-weight:600;">3. Подписаться на каналы</div>
+        <div style="font-size:10px;color:var(--text-muted);">Telegram @akrk_south</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">🎉</div>
+        <div style="font-size:12px;font-weight:600;">4. Прийти на мероприятие</div>
+        <div style="font-size:10px;color:var(--text-muted);">Первое — бесплатно!</div>
+      </div>
+    </div>
+    <p style="font-size:13px;">Членом может стать любой этнический кореец из постсоветских стран, проживающий в РК. Без членства можно участвовать как волонтёр или спонсор.</p>
+  </div>
+</div>
+
+<!-- 15: Президент онлайн -->
+<div class="slide">
+  <div class="slide-content" style="text-align:center;">
+    <div style="font-size:48px;margin-bottom:12px;">🎙</div>
+    <div class="section-label inter">Видеосвязь</div>
+    <h2>Приветствие президента АКРК</h2>
+    <p style="max-width:520px;margin:0 auto;">Сегодня к нам по видеосвязи подключается <strong>президент АКРК Тен Жанна Владимировна</strong>, чтобы лично поприветствовать участников сессии и новых членов организации.</p>
+    <div style="margin-top:24px;padding:20px;background:var(--surface);border:1px dashed var(--accent-dim);border-radius:var(--radius);display:inline-block;">
+      <div style="font-size:14px;color:var(--accent);">📺 Видеозвонок</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Подключение — по ссылке в чате</div>
+    </div>
+  </div>
+</div>
+
+<!-- 16: Айсбрейкер -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label inter">🎯 Интерактив</div>
+    <h2>Айсбрейкер</h2>
+    <p>5–10 минут в начале. Цель — расслабиться и познакомиться до контента. Многие пришли впервые.</p>
+    <div class="ice-grid">
+      <div class="ice-card">
+        <div class="ice-icon">🎭</div>
+        <h4>Два факта и ложь</h4>
+        <p>Каждый называет три факта, остальные угадывают ложь</p>
+      </div>
+      <div class="ice-card">
+        <div class="ice-icon">🔍</div>
+        <h4>Найди человека...</h4>
+        <p>Карточки: «кто живёт в Пусане меньше года» и т.д.</p>
+      </div>
+      <div class="ice-card">
+        <div class="ice-icon">👋</div>
+        <h4>Быстрые интро</h4>
+        <p>Имя, откуда, один факт о себе — по кругу</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 17: Квиз -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label inter">🎮 Интерактив</div>
+    <h2>Квиз по материалам</h2>
+    <p>10–15 вопросов по содержанию сессии. Участники отвечают с телефонов. Real-time лидерборд. Призы топ-3.</p>
+    <div class="interactive-box">
+      <h3 style="font-size:16px;">Kahoot! или Slido</h3>
+      <p>Ссылка появится здесь перед мероприятием</p>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+        <a class="btn" href="#" onclick="alert('Ссылка будет добавлена')">Kahoot!</a>
+        <a class="btn btn-outline" href="#" onclick="alert('Ссылка будет добавлена')">Slido</a>
+      </div>
+    </div>
+    <div style="margin-top:8px;">
+      <div class="check"><input type="checkbox" id="q1"><label for="q1">Выбрать платформу</label></div>
+      <div class="check"><input type="checkbox" id="q2"><label for="q2">Составить 10–15 вопросов</label></div>
+      <div class="check"><input type="checkbox" id="q3"><label for="q3">Подготовить призы топ-3</label></div>
+      <div class="check"><input type="checkbox" id="q4"><label for="q4">Протестировать Wi-Fi, экран, звук</label></div>
+    </div>
+  </div>
+</div>
+
+<!-- 18: Тимбилдинг -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label inter">🤝 Интерактив</div>
+    <h2>Тимбилдинг</h2>
+    <p>После программы — чтобы не разошлись сразу, а пообщались неформально.</p>
+    <div class="grid-2">
+      <div class="card"><h4>👥 Мини-группы</h4><p>Обсудить «что бы вы хотели видеть от АКРК»</p></div>
+      <div class="card"><h4>📸 Общие фото</h4><p>Для соцсетей и истории организации</p></div>
+      <div class="card"><h4>🍕 Еда и напитки</h4><p>Свободное общение</p></div>
+      <div class="card"><h4>💬 Вопросы спикерам</h4><p>Один на один вне сцены</p></div>
+    </div>
+    <blockquote>Определить: формат, бюджет на еду/напитки, тайминг 30–60 минут</blockquote>
+  </div>
+</div>
+
+<!-- 19: Материалы и контакты -->
+<div class="slide">
+  <div class="slide-content">
+    <div class="section-label">Подготовка</div>
+    <h2>Материалы и контакты</h2>
+    <div class="check"><input type="checkbox" id="m1"><label for="m1">Презентация (слайды)</label></div>
+    <div class="check"><input type="checkbox" id="m2"><label for="m2">Брошюры для новых участников</label></div>
+    <div class="check"><input type="checkbox" id="m3"><label for="m3">Анонс в соцсетях</label></div>
+    <div class="grid-2" style="margin-top:14px;">
+      <div class="card"><h4>🌐 Сайт АКРК</h4><p>koryosaram.org</p></div>
+      <div class="card"><h4>📱 Telegram</h4><p>федеральный @akrk2018 · юг @akrk_south</p></div>
+      <div class="card"><h4>📸 Instagram / YouTube</h4><p>@akrk_south</p></div>
+      <div class="card"><h4>📧 Email</h4><p>koresaraminkorea@gmail.com</p></div>
+    </div>
+    <div style="margin-top:16px;text-align:center;font-size:12px;color:var(--text-muted);">
+      <strong style="color:var(--accent);">АКРК Пусан</strong> · 27 июня 2026<br>
+      <a href="https://t.me/akrk_south" target="_blank">Telegram</a> ·
+      <a href="https://instagram.com/akrk_south" target="_blank">Instagram</a> ·
+      <a href="https://youtube.com/@akrk_south" target="_blank">YouTube</a>
+    </div>
+  </div>
+</div>
 
     </div><!-- /slides-wrapper -->
 
-    <!-- Bottom nav bar -->
     <div class="slide-nav">
-      <button onclick="prevSlide()" title="Назад (←)">◀</button>
-      <span class="counter" id="slideCounter">1 / 12</span>
-      <button onclick="nextSlide()" title="Вперёд (→)">▶</button>
+      <button onclick="prevSlide()">◀</button>
+      <span class="counter" id="slideCounter">1 / 20</span>
+      <button onclick="nextSlide()">▶</button>
     </div>
-
   </div><!-- /stage -->
 </div><!-- /app -->
 
@@ -724,6 +938,7 @@
     navItems.forEach((item, i) => {
       item.classList.toggle('active', i === current);
     });
+    localStorage.setItem('akrk-slide', current);
   }
 
   function goSlide(n) {
@@ -732,23 +947,19 @@
     current = n;
     update();
   }
-
   function nextSlide() { goSlide(current + 1); }
   function prevSlide() { goSlide(current - 1); }
 
-  // Keyboard
+  // Restore last slide
+  try { const saved = parseInt(localStorage.getItem('akrk-slide')); if (!isNaN(saved) && saved < total) { current = saved; } } catch(e) {}
+  // Need to wait for DOM
+  setTimeout(update, 0);
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-      e.preventDefault();
-      nextSlide();
-    }
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      prevSlide();
-    }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); }
   });
 
-  // Mouse wheel (debounced)
   let wheelTimeout = false;
   document.querySelector('.stage').addEventListener('wheel', (e) => {
     if (wheelTimeout) return;
@@ -758,17 +969,11 @@
     else prevSlide();
   }, { passive: true });
 
-  // Touch support
   let touchStartY = 0;
-  document.querySelector('.stage').addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
+  document.querySelector('.stage').addEventListener('touchstart', (e) => { touchStartY = e.changedTouches[0].screenY; }, { passive: true });
   document.querySelector('.stage').addEventListener('touchend', (e) => {
     const diff = touchStartY - e.changedTouches[0].screenY;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) nextSlide();
-      else prevSlide();
-    }
+    if (Math.abs(diff) > 50) { if (diff > 0) nextSlide(); else prevSlide(); }
   }, { passive: true });
 </script>
 
