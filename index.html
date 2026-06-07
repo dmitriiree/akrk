@@ -371,37 +371,37 @@
   .agenda-text { font-size: 13px; color: var(--text); }
   .agenda-text small { color: var(--text-muted); font-weight: 400; }
 
-  /* Photo placeholder */
-  .photo-placeholder {
+  /* Photo */
+  .photo-wrap {
     width: 100%;
-    height: 200px;
-    background: var(--surface);
-    border: 1px solid var(--border);
     border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 13px;
-    margin: 10px 0;
-    position: relative;
     overflow: hidden;
+    border: 1px solid var(--border);
+    margin: 8px 0;
+    position: relative;
   }
-  .photo-placeholder img {
+  .photo-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: block;
   }
   .photo-label {
     position: absolute;
     bottom: 8px;
     right: 8px;
-    background: rgba(0,0,0,0.6);
-    padding: 2px 8px;
+    background: rgba(0,0,0,0.65);
+    padding: 2px 10px;
     border-radius: 4px;
     font-size: 10px;
     color: #fff;
   }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 8px 0;
+  }
+  @media (max-width: 600px) { .photo-grid { grid-template-columns: 1fr; } }
+  .photo-grid .photo-wrap { margin: 0; }
 
   .slide-nav {
     position: fixed;
@@ -747,11 +747,11 @@
   <div class="slide-content">
     <div class="section-label reg">🟧 Региональный уровень · Февраль 2026</div>
     <h2>🏛 Ежегодное собрание АКРК в Ансане</h2>
-    <div class="photo-placeholder">
+    <div class="photo-wrap">
       <img src="images/ansan-meeting.jpg" alt="Ежегодное собрание АКРК, Ансан, 21.02.2026" loading="lazy">
       <span class="photo-label">🏛 21.02.2026 · Ансан</span>
     </div>
-    <p style="font-size:13px;">Команда Пусана приняла участие в V отчётно-выборном собрании АКРК в Ансане. Участие в собрании дало ощущение масштаба организации, более глубокое понимание стратегии и планов Ассоциации, а также заряд и мотивацию для развития деятельности в Пусане и на юге.</p>
+    <p style="font-size:13px;">Команда Пусана приняла участие в V отчётно-выборном собрании АКРК в Ансане — ощущение масштаба, понимание стратегии, заряд для развития на юге.</p>
   </div>
 </div>
 
@@ -760,7 +760,7 @@
   <div class="slide-content">
     <div class="section-label reg">🟧 Событие · 28.02.2026</div>
     <h2>🏓 III Турнир по настольному теннису</h2>
-    <div class="photo-placeholder">
+    <div class="photo-wrap">
       <img src="images/tennis-tournament.jpg" alt="III Турнир по настольному теннису, 28.02.2026" loading="lazy">
       <span class="photo-label">🏓 28.02.2026</span>
     </div>
@@ -783,7 +783,7 @@
   <div class="slide-content">
     <div class="section-label reg">🟧 Событие · 15–16.05.2026</div>
     <h2>📚 Лекции Вадима Акуленко</h2>
-    <div class="photo-placeholder">
+    <div class="photo-wrap">
       <img src="images/lectures-group.jpg" alt="Лекции Вадима Акуленко, 15-16.05.2026" loading="lazy">
       <span class="photo-label">📚 15-16.05.2026</span>
     </div>
@@ -806,7 +806,7 @@
   <div class="slide-content">
     <div class="section-label reg">🟧 Событие · 23.05.2026</div>
     <h2>🌍 Global Gathering — фестиваль народов мира</h2>
-    <div class="photo-placeholder">
+    <div class="photo-wrap">
       <img src="images/global-team-group.jpg" alt="Global Gathering, команда АКРК у стенда, 23.05.2026" loading="lazy">
       <span class="photo-label">🌍 23.05.2026 · команда</span>
     </div>
@@ -828,14 +828,19 @@
   <div class="slide-content">
     <div class="section-label reg">🟧 Событие · Март 2026</div>
     <h2>🚀 Молодёжное движение: встреча в Кимхэ</h2>
-    <div class="photo-placeholder">
-      <img src="images/kimhae-youth.jpg" alt="Встреча с молодёжным движением в Кимхэ, март 2026" loading="lazy">
-      <span class="photo-label">🚀 Март 2026 · Кимхэ</span>
+    <div class="photo-grid">
+      <div class="photo-wrap">
+        <img src="images/kimhae-youth.jpg" alt="Встреча с молодёжным движением в Кимхэ" loading="lazy">
+        <span class="photo-label">🚀 Кимхэ</span>
+      </div>
+      <div class="photo-wrap">
+        <img src="images/kimhae-photo2.jpg" alt="Встреча с молодёжным движением в Кимхэ" loading="lazy">
+        <span class="photo-label">🚀 Кимхэ</span>
+      </div>
     </div>
-    <ul>
-      <li>Молодёжное движение АКРК приезжало в Кимхэ с информационной сессией о поступлении в университеты Южной Кореи</li>
-      <li>Команда южного региона присоединилась, познакомилась с представителями молодёжного движения</li>
-      <li>Один из членов регионального отделения стал представителем молодёжного движения на юге — заложен фундамент для развития молодёжного направления в регионе</li>
+    <ul style="font-size:13px;">
+      <li>Молодёжное движение АКРК — информационная сессия о поступлении в университеты Кореи</li>
+      <li>Команда южного региона познакомилась с представителями, один из членов стал представителем молодёжки на юге</li>
     </ul>
   </div>
 </div>
