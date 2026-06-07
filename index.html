@@ -245,7 +245,10 @@
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 8px;
     margin: 12px 0;
+    justify-items: center;
+    justify-content: center;
   }
+  @media (max-width: 700px) { .grid-3 { grid-template-columns: 1fr; } }
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -755,7 +758,7 @@
     <div class="video-wrap" style="margin-top:4px;">
       <iframe src="https://www.youtube.com/embed/NpSynTB0NL0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="grid-3" style="justify-items:center;margin-top:6px;">
+    <div class="grid-3" style="margin-top:6px;">
       <div class="card" style="text-align:center;"><h4>📥 Собрать</h4><p>Агрегация голосов и проблем сообщества</p></div>
       <div class="card" style="text-align:center;"><h4>📢 Объяснить</h4><p>Артикуляция интересов государству и обществу</p></div>
       <div class="card" style="text-align:center;"><h4>🔗 Соединить</h4><p>Медиация между общиной и институтами</p></div>
