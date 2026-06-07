@@ -6,15 +6,17 @@
 <title>АКРК Пусан — Информационная сессия · 27 июня 2026</title>
 <style>
   :root {
-    --bg: #0f0f12;
-    --surface: #18181c;
-    --surface-hover: #22222a;
-    --border: #2a2a32;
-    --text: #e8e8ed;
-    --text-muted: #8888a0;
+    --bg: #e6eaf7;
+    --surface: #ffffff;
+    --surface-hover: #f4f6ff;
+    --border: #cfd6f0;
+    --text: #1a1a2e;
+    --text-muted: #5a627a;
     --accent: #e6b450;
-    --accent-dim: #a08030;
-    --accent-bg: rgba(230,180,80,0.08);
+    --accent-dim: #c49030;
+    --accent-bg: rgba(230,180,80,0.12);
+    --accent-ink: #8a6510;
+    --purple-ink: #6d4fc4;
     --radius: 12px;
     --font: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     --nav-w: 220px;
@@ -92,7 +94,7 @@
   .sidebar-brand {
     font-size: 12px;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--accent-ink);
     margin-bottom: 14px;
     padding: 0 8px;
     letter-spacing: -0.01em;
@@ -130,7 +132,7 @@
     margin-bottom: 1px;
   }
   .nav-item:hover { color: var(--text); background: var(--surface-hover); }
-  .nav-item.active { color: var(--accent); background: var(--accent-bg); }
+  .nav-item.active { color: var(--accent-ink); background: var(--accent-bg); }
   .nav-num {
     flex-shrink: 0;
     width: 18px;
@@ -139,7 +141,7 @@
     color: var(--text-muted);
     text-align: right;
   }
-  .nav-item.active .nav-num { color: var(--accent); }
+  .nav-item.active .nav-num { color: var(--accent-ink); }
   .nav-label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* Stage */
@@ -205,13 +207,13 @@
     font-size: 10px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-ink);
     margin-bottom: 4px;
     font-weight: 600;
   }
-  .section-label.fed { color: #5b9bd5; }
-  .section-label.reg { color: var(--accent); }
-  .section-label.inter { color: #a78bfa; }
+  .section-label.fed { color: #2C3A95; }
+  .section-label.reg { color: var(--accent-ink); }
+  .section-label.inter { color: var(--purple-ink); }
 
   h2 {
     font-size: clamp(26px, 2.8vw, 38px);
@@ -277,7 +279,7 @@
     font-style: italic;
     font-size: 13px;
   }
-  a { color: var(--accent); text-decoration: none; }
+  a { color: var(--accent-ink); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
   .video-wrap {
@@ -308,7 +310,7 @@
     text-align: center;
     flex: 1;
   }
-  .kpi-num { font-size: 22px; font-weight: 700; color: #5b9bd5; line-height: 1; }
+  .kpi-num { font-size: 22px; font-weight: 700; color: #2C3A95; line-height: 1; }
   .kpi-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
 
   .quarter-grid {
@@ -355,7 +357,7 @@
     font-size: 12px;
     font-weight: 500;
     background: var(--accent);
-    color: #0f0f12;
+    color: #1a1a2e;
     text-decoration: none;
     transition: opacity 0.2s;
     cursor: pointer;
@@ -365,7 +367,7 @@
   .btn-outline {
     background: transparent;
     border: 1px solid var(--accent-dim);
-    color: var(--accent);
+    color: var(--accent-ink);
   }
   .check { margin: 4px 0; font-size: 12px; color: var(--text-muted); }
   .check input { margin-right: 6px; accent-color: var(--accent); }
@@ -391,7 +393,7 @@
     justify-content: center;
     border-radius: 6px;
     background: var(--accent-bg);
-    color: var(--accent);
+    color: var(--accent-ink);
     font-size: 11px;
     font-weight: 700;
   }
@@ -537,27 +539,29 @@
 
     <div class="nav-section-label">Республиканский уровень</div>
     <button class="nav-item" data-slide="4" onclick="goSlide(4)"><span class="nav-num">05</span><span class="nav-label">Что такое АКРК</span></button>
-    <button class="nav-item" data-slide="5" onclick="goSlide(5)"><span class="nav-num">06</span><span class="nav-label">Три функции + видео</span></button>
-    <button class="nav-item" data-slide="6" onclick="goSlide(6)"><span class="nav-num">07</span><span class="nav-label">Итоги 2025</span></button>
-    <button class="nav-item" data-slide="7" onclick="goSlide(7)"><span class="nav-num">08</span><span class="nav-label">Что даёт членство</span></button>
-    <button class="nav-item" data-slide="8" onclick="goSlide(8)"><span class="nav-num">09</span><span class="nav-label">Возможности и проекты</span></button>
-    <button class="nav-item" data-slide="9" onclick="goSlide(9)"><span class="nav-num">10</span><span class="nav-label">Бюджет и взносы</span></button>
-    <button class="nav-item" data-slide="10" onclick="goSlide(10)"><span class="nav-num">11</span><span class="nav-label">Стратегия 2026</span></button>
+    <button class="nav-item" data-slide="5" onclick="goSlide(5)"><span class="nav-num">06</span><span class="nav-label">🏛 Структура АКРК</span></button>
+    <button class="nav-item" data-slide="6" onclick="goSlide(6)"><span class="nav-num">07</span><span class="nav-label">🗺 Представительства</span></button>
+    <button class="nav-item" data-slide="7" onclick="goSlide(7)"><span class="nav-num">08</span><span class="nav-label">Три функции + видео</span></button>
+    <button class="nav-item" data-slide="8" onclick="goSlide(8)"><span class="nav-num">09</span><span class="nav-label">Итоги 2025</span></button>
+    <button class="nav-item" data-slide="9" onclick="goSlide(9)"><span class="nav-num">10</span><span class="nav-label">Что даёт членство</span></button>
+    <button class="nav-item" data-slide="10" onclick="goSlide(10)"><span class="nav-num">11</span><span class="nav-label">Возможности и проекты</span></button>
+    <button class="nav-item" data-slide="11" onclick="goSlide(11)"><span class="nav-num">12</span><span class="nav-label">Бюджет и взносы</span></button>
+    <button class="nav-item" data-slide="12" onclick="goSlide(12)"><span class="nav-num">13</span><span class="nav-label">Стратегия 2026</span></button>
 
     <div class="nav-section-label">Региональный уровень (Юг)</div>
-    <button class="nav-item" data-slide="11" onclick="goSlide(11)"><span class="nav-num">12</span><span class="nav-label">АКРК Пусан</span></button>
-    <button class="nav-item" data-slide="12" onclick="goSlide(12)"><span class="nav-num">13</span><span class="nav-label">🏛 Собрание в Ансане</span></button>
-    <button class="nav-item" data-slide="13" onclick="goSlide(13)"><span class="nav-num">14</span><span class="nav-label">🚀 Кимхэ</span></button>
-    <button class="nav-item" data-slide="14" onclick="goSlide(14)"><span class="nav-num">15</span><span class="nav-label">🏓 Турнир (28.02)</span></button>
-    <button class="nav-item" data-slide="15" onclick="goSlide(15)"><span class="nav-num">16</span><span class="nav-label">📚 Лекции (15-16.05)</span></button>
-    <button class="nav-item" data-slide="16" onclick="goSlide(16)"><span class="nav-num">17</span><span class="nav-label">🌍 Global Gathering</span></button>
-    <button class="nav-item" data-slide="17" onclick="goSlide(17)"><span class="nav-num">18</span><span class="nav-label">Планы Пусан H2</span></button>
+    <button class="nav-item" data-slide="13" onclick="goSlide(13)"><span class="nav-num">14</span><span class="nav-label">АКРК Пусан</span></button>
+    <button class="nav-item" data-slide="14" onclick="goSlide(14)"><span class="nav-num">15</span><span class="nav-label">🏛 Собрание в Ансане</span></button>
+    <button class="nav-item" data-slide="15" onclick="goSlide(15)"><span class="nav-num">16</span><span class="nav-label">🚀 Кимхэ</span></button>
+    <button class="nav-item" data-slide="16" onclick="goSlide(16)"><span class="nav-num">17</span><span class="nav-label">🏓 Турнир (28.02)</span></button>
+    <button class="nav-item" data-slide="17" onclick="goSlide(17)"><span class="nav-num">18</span><span class="nav-label">📚 Лекции (15-16.05)</span></button>
+    <button class="nav-item" data-slide="18" onclick="goSlide(18)"><span class="nav-num">19</span><span class="nav-label">🌍 Global Gathering</span></button>
+    <button class="nav-item" data-slide="19" onclick="goSlide(19)"><span class="nav-num">20</span><span class="nav-label">Планы Пусан H2</span></button>
 
         <div class="nav-section-label">Завершение</div>
-    <button class="nav-item" data-slide="18" onclick="goSlide(18)"><span class="nav-num">19</span><span class="nav-label">👥 Работа в группах</span></button>
-    <button class="nav-item" data-slide="19" onclick="goSlide(19)"><span class="nav-num">20</span><span class="nav-label">🤝 Вступление</span></button>
-    <button class="nav-item" data-slide="20" onclick="goSlide(20)"><span class="nav-num">21</span><span class="nav-label">🎉 Завершение</span></button>
-    <button class="nav-item" data-slide="21" onclick="goSlide(21)"><span class="nav-num">22</span><span class="nav-label">📋 Чек-лист</span></button></aside>
+    <button class="nav-item" data-slide="20" onclick="goSlide(20)"><span class="nav-num">21</span><span class="nav-label">👥 Работа в группах</span></button>
+    <button class="nav-item" data-slide="21" onclick="goSlide(21)"><span class="nav-num">22</span><span class="nav-label">🤝 Вступление</span></button>
+    <button class="nav-item" data-slide="22" onclick="goSlide(22)"><span class="nav-num">23</span><span class="nav-label">🎉 Завершение</span></button>
+    <button class="nav-item" data-slide="23" onclick="goSlide(23)"><span class="nav-num">24</span><span class="nav-label">📋 Чек-лист</span></button></aside>
 
   <!-- Sidebar toggle -->
   <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
@@ -572,10 +576,10 @@
 <!-- 01: Cover -->
 <div class="slide" style="padding:0;position:relative;overflow:hidden;">
   <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:32px;">
-    <div role="img" aria-label="АКРК" style="width:80px;height:80px;border-radius:50%;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.4);margin-bottom:20px;flex-shrink:0;background:url('images/logo.png') 32% 44%/115% no-repeat;"></div>
-    <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:600;">Открытая встреча · 27 июня 2026</div>
+    <div role="img" aria-label="АКРК" style="width:80px;height:80px;border-radius:50%;overflow:hidden;box-shadow:0 4px 20px rgba(44,58,149,0.35);margin-bottom:20px;flex-shrink:0;background-color:#2C3A95;background-image:url('images/logo.png');background-position:32% 44%;background-size:115%;background-repeat:no-repeat;"></div>
+    <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-ink);margin-bottom:12px;font-weight:600;">Открытая встреча · 27 июня 2026</div>
     <h2 style="font-size:clamp(32px,5vw,58px);margin-bottom:4px;font-weight:800;letter-spacing:-0.02em;">Информационная сессия</h2>
-    <h2 style="font-size:clamp(28px,4vw,48px);color:var(--accent);margin-bottom:16px;font-weight:800;letter-spacing:-0.02em;">АКРК Пусан</h2>
+    <h2 style="font-size:clamp(28px,4vw,48px);color:var(--accent-ink);margin-bottom:16px;font-weight:800;letter-spacing:-0.02em;">АКРК Пусан</h2>
     <p style="font-size:clamp(13px,1.5vw,17px);color:var(--text-muted);max-width:500px;margin:0 auto 20px;">Для корё-сарам и всех заинтересованных</p>
     <div style="font-size:clamp(16px,2vw,24px);font-weight:700;">«В единстве — сила» <span style="display:block;font-size:0.55em;color:var(--text-muted);margin-top:2px;">함께하는 힘</span></div>
   </div>
@@ -615,11 +619,11 @@
     <div class="section-label inter">👋 Вступление</div>
     <h2>Давайте познакомимся</h2>
     <p>По кругу, каждый за ~30 секунд.</p>
-    <div class="ice-cards">
-      <div class="ice-card"><span class="ice-icon">👤</span><span>Имя</span></div>
-      <div class="ice-card"><span class="ice-icon">🇰🇷</span><span>Сколько лет в Корее<br>и в Пусане</span></div>
-      <div class="ice-card"><span class="ice-icon">💼</span><span>Чем занимаетесь</span></div>
-      <div class="ice-card"><span class="ice-icon">🤔</span><span>Один факт о себе<br><small style="color:var(--text-muted);">остальные угадывают — правда или ложь</small></span></div>
+    <div class="ice-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+      <div class="ice-card"><span class="ice-icon" style="display:block;margin-bottom:8px;">👤</span><span>Имя</span></div>
+      <div class="ice-card"><span class="ice-icon" style="display:block;margin-bottom:8px;">🇰🇷</span><span>Сколько лет в Корее<br>и в Пусане</span></div>
+      <div class="ice-card"><span class="ice-icon" style="display:block;margin-bottom:8px;">💼</span><span>Чем занимаетесь</span></div>
+      <div class="ice-card"><span class="ice-icon" style="display:block;margin-bottom:8px;">🤔</span><span>Один факт о себе<br><small style="color:var(--text-muted);">остальные угадывают — правда или ложь</small></span></div>
     </div>
     <blockquote>Неформально и коротко — это задаст тон всей сессии</blockquote>
   </div>
@@ -637,11 +641,11 @@
     <h2>Приветствие президента АКРК</h2>
     <p style="max-width:520px;margin:0 auto;">Сегодня к нам по видеосвязи подключается <strong>президент АКРК Тен Жанна Владимировна</strong>, чтобы лично поприветствовать участников сессии и новых членов организации.</p>
     <div style="margin-top:24px;padding:20px;background:var(--surface);border:1px dashed var(--accent-dim);border-radius:var(--radius);display:inline-block;">
-      <div style="font-size:14px;color:var(--accent);">📺 Видеозвонок</div>
+      <div style="font-size:14px;color:var(--accent-ink);">📺 Видеозвонок</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Подключение — по ссылке в чате</div>
     </div>
   
-    <p style="font-size:11px;color:var(--accent);margin-top:12px;">⚠ Время согласовать</p>
+    <p style="font-size:11px;color:var(--accent-ink);margin-top:12px;">⚠ Время согласовать</p>
   </div>
 </div>
 
@@ -655,94 +659,124 @@
     <div class="section-label fed">🟦 Республиканский уровень</div>
     <h2>Что такое АКРК</h2>
     <p><strong>Ассоциация Корё-сарам в Республике Корея</strong> — официальная организация, зарегистрированная в МИД РК (12.12.2018, рег. №195 от 12.08.2020), представляющая интересы корейцев постсоветского пространства.</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;">
-      <div style="flex:1;min-width:100px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px;text-align:center;">
-        <div style="font-size:10px;color:var(--text-muted);">Год основания</div>
-        <div style="font-size:17px;font-weight:700;color:#5b9bd5;">2018</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;">
+      <div style="flex:1;min-width:100px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 8px;text-align:center;">
+        <div style="font-size:13px;color:var(--text-muted);">Год основания</div>
+        <div style="font-size:24px;font-weight:700;color:#2C3A95;">2018</div>
       </div>
-      <div style="flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px;text-align:center;">
-        <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">Членов АКРК</div>
-        <div style="display:flex;gap:10px;justify-content:center;">
-          <div><div style="font-size:15px;font-weight:700;color:#5b9bd5;">~500</div><div style="font-size:9px;color:var(--text-muted);">в РК</div></div>
-          <div style="width:1px;background:var(--border);"></div>
-          <div><div style="font-size:15px;font-weight:700;color:var(--accent);">20–25</div><div style="font-size:9px;color:var(--text-muted);">Пусан</div></div>
+      <div style="flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 8px;text-align:center;">
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">Членов АКРК</div>
+        <div style="font-size:28px;font-weight:700;color:#2C3A95;line-height:1;">503</div>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:6px;">
+          <div style="font-size:12px;color:var(--text-muted);">действит.: <strong style="color:var(--text);">410</strong></div>
+          <div style="font-size:12px;color:var(--text-muted);">простых: <strong style="color:var(--text);">93</strong></div>
         </div>
       </div>
-      <div style="flex:1;min-width:100px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px;text-align:center;">
-        <div style="font-size:10px;color:var(--text-muted);">Представительств</div>
-        <div style="font-size:17px;font-weight:700;color:#5b9bd5;">14</div>
+      <div style="flex:1;min-width:100px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 8px;text-align:center;">
+        <div style="font-size:13px;color:var(--text-muted);">Представительств</div>
+        <div style="font-size:24px;font-weight:700;color:#2C3A95;">14</div>
       </div>
     </div>
-    <div style="margin-top:10px;">
-      <div style="text-align:center;margin-bottom:6px;">
-        <div style="display:inline-block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:5px 18px;">
-          <div style="font-size:10px;font-weight:600;">Общее собрание членов</div>
-          <div style="font-size:9px;color:var(--text-muted);">высший орган</div>
-        </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 8px;text-align:center;">
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(91,155,213,0.15);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:18px;">🔷</div>
+        <div style="font-size:14px;font-weight:600;">Идентичность</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">защита культуры корё-сарам</div>
       </div>
-      <div style="text-align:center;margin-bottom:4px;">
-        <div style="display:inline-block;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid var(--border);"></div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 8px;text-align:center;">
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(230,180,80,0.15);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:18px;">📈</div>
+        <div style="font-size:14px;font-weight:600;">Рост</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">проекты для сообщества</div>
       </div>
-      <div style="text-align:center;margin-bottom:6px;">
-        <div style="display:inline-block;background:var(--surface);border:1px solid #5b9bd5;border-radius:var(--radius);padding:5px 18px;">
-          <div style="font-size:10px;font-weight:600;color:#5b9bd5;">Совет директоров</div>
-          <div style="font-size:9px;color:var(--text-muted);">возглавляет президент Тен Жанна В.</div>
-        </div>
-      </div>
-      <div style="text-align:center;margin-bottom:4px;">
-        <div style="display:inline-block;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid var(--border);"></div>
-      </div>
-      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:5px 14px;text-align:center;flex:1;min-width:120px;">
-          <div style="font-size:10px;font-weight:600;">Исполнительный комитет</div>
-          <div style="font-size:9px;color:var(--text-muted);">операционное управление</div>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:5px 14px;text-align:center;flex:1;min-width:120px;">
-          <div style="font-size:10px;font-weight:600;">Ревизионная комиссия</div>
-          <div style="font-size:9px;color:var(--text-muted);">внутренний контроль</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-top:6px;">
-        <div style="background:rgba(91,155,213,0.08);border:1px solid rgba(91,155,213,0.3);border-radius:4px;padding:3px 8px;font-size:9px;color:var(--text-muted);">📱 Медиа</div>
-        <div style="background:rgba(91,155,213,0.08);border:1px solid rgba(91,155,213,0.3);border-radius:4px;padding:3px 8px;font-size:9px;color:var(--text-muted);">🎓 Образование / Культура / Спорт</div>
-        <div style="background:rgba(91,155,213,0.08);border:1px solid rgba(91,155,213,0.3);border-radius:4px;padding:3px 8px;font-size:9px;color:var(--text-muted);">⚖ Социально-правовая поддержка</div>
-        <div style="background:rgba(91,155,213,0.08);border:1px solid rgba(91,155,213,0.3);border-radius:4px;padding:3px 8px;font-size:9px;color:var(--text-muted);">💡 Консультативный</div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 8px;text-align:center;">
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(167,139,250,0.15);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:18px;">🤝</div>
+        <div style="font-size:14px;font-weight:600;">Взаимодействие</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">связи внутри и вовне</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px;text-align:center;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(91,155,213,0.15);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#5b9bd5;">🔷</div>
-        <div style="font-size:11px;font-weight:600;">Идентичность</div>
-        <div style="font-size:9px;color:var(--text-muted);">защита культуры корё-сарам</div>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px;text-align:center;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(230,180,80,0.15);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--accent);">📈</div>
-        <div style="font-size:11px;font-weight:600;">Рост</div>
-        <div style="font-size:9px;color:var(--text-muted);">проекты для сообщества</div>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px;text-align:center;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(167,139,250,0.15);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#a78bfa;">🤝</div>
-        <div style="font-size:11px;font-weight:600;">Взаимодействие</div>
-        <div style="font-size:9px;color:var(--text-muted);">связи внутри и вовне</div>
-      </div>
+    <blockquote style="margin-top:20px;"><strong>Миссия:</strong> Защита прав диаспоры, содействие социальной интеграции, сохранение культурной идентичности корё-сарам в РК.</blockquote>
+  </div>
+</div>
+
+<!-- 05b: Структура -->
+<div class="slide" style="background:#f5f7ff;padding:32px 48px;">
+  <div class="slide-content" style="max-width:900px;padding:0;background:transparent;">
+    <div class="section-label fed" style="color:#2C3A95;">🟦 Республиканский уровень</div>
+    <h2 style="color:#1a1a2e;margin-bottom:16px;">Структура АКРК</h2>
+
+    <!-- ROW 1: Общее год. собрание — Совет правления — Аудитор -->
+    <div style="display:flex;align-items:stretch;">
+      <div style="flex:1;background:#2C3A95;color:#fff;border-radius:8px;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;">Общее годовое собрание</div>
+      <div style="width:24px;display:flex;align-items:center;"><div style="width:100%;height:2px;background:#2C3A95;"></div></div>
+      <div style="flex:1;background:#2C3A95;color:#fff;border-radius:8px;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;">Совет правления</div>
+      <div style="width:24px;display:flex;align-items:center;"><div style="width:100%;height:2px;background:#2C3A95;"></div></div>
+      <div style="flex:1;background:#2C3A95;color:#fff;border-radius:8px;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;">Аудитор</div>
     </div>
-    <p style="font-size:11px;margin-top:4px;text-align:center;color:var(--text-muted);"><strong style="color:var(--text);">Миссия:</strong> Защита прав диаспоры, содействие социальной интеграции, сохранение культурной идентичности корё-сарам в РК.</p>
-    <div style="display:flex;gap:3px;justify-content:center;flex-wrap:wrap;margin-top:4px;">
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Сеул</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Инчхон</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Ансан</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Ансон</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Сувон</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Чхонан</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Асан</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Чхонджу</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Кванджу</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Кёнджу</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Кимхэ</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Танджин</span>
-      <span style="font-size:9px;color:var(--accent);background:rgba(230,180,80,0.1);border:1px solid rgba(230,180,80,0.3);border-radius:3px;padding:1px 6px;font-weight:600;">Пусан</span>
-      <span style="font-size:9px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 6px;">Ульсан</span>
+
+    <!-- Vertical connector: col2 only -->
+    <div style="display:flex;">
+      <div style="flex:1;"></div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;display:flex;justify-content:center;"><div style="width:2px;height:10px;background:#2C3A95;"></div></div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;"></div>
     </div>
+
+    <!-- ROW 2: Президент (center only) -->
+    <div style="display:flex;">
+      <div style="flex:1;"></div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;background:#2C3A95;color:#fff;border-radius:8px;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;">Президент</div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;"></div>
+    </div>
+
+    <!-- Vertical connector: col2 only -->
+    <div style="display:flex;">
+      <div style="flex:1;"></div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;display:flex;justify-content:center;"><div style="width:2px;height:10px;background:#2C3A95;"></div></div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;"></div>
+    </div>
+
+    <!-- ROW 3: Общества — Исполнительный комитет — Региональная деятельность -->
+    <div style="display:flex;align-items:stretch;margin-bottom:8px;">
+      <div style="flex:1;background:#2C3A95;color:#fff;border-radius:8px;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;">Общества</div>
+      <div style="width:24px;display:flex;align-items:center;"><div style="width:100%;height:2px;background:#2C3A95;"></div></div>
+      <div style="flex:1;background:#2C3A95;color:#fff;border-radius:8px;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;">Исполнительный комитет</div>
+      <div style="width:24px;display:flex;align-items:center;"><div style="width:100%;height:2px;background:#2C3A95;"></div></div>
+      <div style="flex:1;background:#2C3A95;color:#fff;border-radius:8px;padding:10px 12px;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;">Региональная деятельность</div>
+    </div>
+
+    <!-- ROW 4+: Sub-items aligned to columns -->
+    <div style="display:flex;align-items:flex-start;">
+      <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Общество потомков борцов за независимость</div>
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Союз предпринимателей</div>
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Молодёжное движение</div>
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Социальное объединение «MOST»</div>
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Общество старшего поколения</div>
+      </div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Комитет по культуре, образованию и спорту</div>
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Социально-правовой комитет</div>
+        <div style="background:#fff;border:1.5px solid #c5caf0;border-radius:6px;padding:7px 10px;font-size:11.5px;color:#3E406E;font-weight:500;">Комитет по медиа и информации</div>
+      </div>
+      <div style="width:24px;"></div>
+      <div style="flex:1;"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 05c: Представительства -->
+<div class="slide" style="background:#f0f2f8;">
+  <div class="slide-content" style="background:transparent;">
+    <div class="section-label fed" style="color:#2C3A95;">🟦 Республиканский уровень</div>
+    <h2 style="color:#1a1a2e;margin-bottom:12px;">Представительства АКРК</h2>
+    <img src="images/structure-map.png" alt="Региональные представительства АКРК" style="width:100%;display:block;border-radius:8px;">
   </div>
 </div>
 
@@ -793,10 +827,10 @@
     <blockquote>Исторические лагеря, экскурсии, молодёжные форумы, выставка Хегая Мирона</blockquote>
     <h3 style="margin-top:12px;">Финансовые показатели</h3>
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">127</div><div class="kpi-label">млн ₩ доход</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">110</div><div class="kpi-label">млн ₩ расход</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">47,8</div><div class="kpi-label">млн ₩ членские взносы</div></div>
-      <div class="kpi"><div class="kpi-num" style="color:#5b9bd5;">+6,2</div><div class="kpi-label">млн ₩ переходит на 2026</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:#2C3A95;">127</div><div class="kpi-label">млн ₩ доход</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:#2C3A95;">110</div><div class="kpi-label">млн ₩ расход</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:#2C3A95;">47,8</div><div class="kpi-label">млн ₩ членские взносы</div></div>
+      <div class="kpi"><div class="kpi-num" style="color:#2C3A95;">+6,2</div><div class="kpi-label">млн ₩ переходит на 2026</div></div>
     </div>
   </div>
 </div>
@@ -892,17 +926,17 @@
     <p>Три базовых вектора — каркас всей деятельности:</p>
     <div class="strat-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;">
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(91,155,213,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#5b9bd5;">⚖</div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(91,155,213,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#2C3A95;">⚖</div>
         <h4 style="font-size:13px;margin-bottom:6px;">Историческая справедливость</h4>
         <p style="font-size:11px;color:var(--text-muted);">Правовой статус корё-сарам, работа с Парламентом, ЮНЕСКО «Память мира»</p>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;">
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(230,180,80,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);">🌱</div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(230,180,80,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent-ink);">🌱</div>
         <h4 style="font-size:13px;margin-bottom:6px;">Устойчивое развитие</h4>
         <p style="font-size:11px;color:var(--text-muted);">Правовая навигация, образование, модель «семья — школа — сообщество»</p>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;">
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(167,139,250,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#a78bfa;">🌏</div>
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(167,139,250,0.15);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#3E406E;">🌏</div>
         <h4 style="font-size:13px;margin-bottom:6px;">Вклад в Корею</h4>
         <p style="font-size:11px;color:var(--text-muted);">Образ корё-сарам как ресурса развития, деловые связи со странами СНГ</p>
       </div>
@@ -925,17 +959,17 @@
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;text-align:center;min-width:110px;">
         <div style="margin-bottom:2px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1E96C8"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></div>
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:1px;">TELEGRAM</div>
-        <div style="font-size:14px;font-weight:600;color:var(--accent);">@akrk_south</div>
+        <div style="font-size:14px;font-weight:600;color:var(--accent-ink);">@akrk_south</div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;text-align:center;min-width:110px;">
         <div style="margin-bottom:2px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:1px;">INSTAGRAM</div>
-        <div style="font-size:14px;font-weight:600;color:var(--accent);">@akrk_south</div>
+        <div style="font-size:14px;font-weight:600;color:var(--accent-ink);">@akrk_south</div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;text-align:center;min-width:110px;">
         <div style="margin-bottom:2px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:1px;">YOUTUBE</div>
-        <div style="font-size:14px;font-weight:600;color:var(--accent);">@akrk_south</div>
+        <div style="font-size:14px;font-weight:600;color:var(--accent-ink);">@akrk_south</div>
       </div>
     </div>
     <p style="margin-top:18px;font-size:13px;">За 1-е полугодие 2026 проведено <strong>3 крупных события</strong> + запущены медиа-каналы и инструменты.</p>
@@ -1019,9 +1053,9 @@
       </div>
       <div class="col-text">
         <div class="kpi-row">
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">28</div><div class="kpi-label">участников</div></div>
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10</div><div class="kpi-label">городов Кореи</div></div>
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">60</div><div class="kpi-label">человек на площадке</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">28</div><div class="kpi-label">участников</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">10</div><div class="kpi-label">городов Кореи</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">60</div><div class="kpi-label">человек на площадке</div></div>
         </div>
         <ul>
           <li>Совместно с Ассоциацией настольного тенниса Пусана — важный шаг интеграции с местным сообществом</li>
@@ -1059,9 +1093,9 @@
       </div>
       <div class="col-text">
         <div class="kpi-row">
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">1</div><div class="kpi-label">экскурсия</div></div>
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">3</div><div class="kpi-label">лекции</div></div>
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">30</div><div class="kpi-label">человек</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">1</div><div class="kpi-label">экскурсия</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">3</div><div class="kpi-label">лекции</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">30</div><div class="kpi-label">человек</div></div>
         </div>
         <ul>
           <li>Лектор — <strong>Акуленко Вадим Сергеевич</strong> (канд. ист. наук, доцент ДВФУ, член АКРК)</li>
@@ -1100,8 +1134,8 @@
       </div>
       <div class="col-text">
         <div class="kpi-row">
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10+</div><div class="kpi-label">стран-участниц</div></div>
-          <div class="kpi"><div class="kpi-num" style="color:var(--accent);">🤝</div><div class="kpi-label">Kim Jong Wan</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">10+</div><div class="kpi-label">стран-участниц</div></div>
+          <div class="kpi"><div class="kpi-num" style="color:var(--accent-ink);">🤝</div><div class="kpi-label">Kim Jong Wan</div></div>
         </div>
         <ul>
           <li><strong>제21회 세계시민축제</strong> — крупнейший международный фестиваль Пусана, организованный Минюстом РК и мэрией при поддержке Busan Global City Foundation</li>
@@ -1156,12 +1190,12 @@
   <div class="slide-content">
     <div class="section-label inter">👥 Интерактив</div>
     <h2>Работа в мини-группах</h2>
-    <p>После квиза разделимся на мини-группы для обсуждения. Цель — не просто поговорить, а вместе подумать: что бы вы хотели видеть от АКРК, какие проекты нужны сообществу, какие у вас есть идеи.</p>
-    <div class="grid-2">
+    <p>Разделимся на мини-группы для обсуждения. Цель — вместе подумать: что бы вы хотели видеть от АКРК, какие проекты нужны сообществу, какие у вас есть идеи.</p>
+    <div class="grid-2" style="grid-template-columns:repeat(2,minmax(180px,280px));justify-content:center;">
       <div class="card"><h4>👥 Мини-группы</h4><p>Обсуждение в группах по 4-6 человек, фиксация идей</p></div>
       <div class="card"><h4>💡 Презентация идей</h4><p>Каждая группа делится main мыслями с залом</p></div>
     </div>
-    <blockquote>Формат: 15-20 мин обсуждение + 10 мин презентация. Далее — процесс вступления, Q&A и свободное общение.</blockquote>
+    <blockquote>Формат: 15-20 мин обсуждение + 10 мин презентация.</blockquote>
   </div>
 </div>
 
@@ -1211,17 +1245,17 @@
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;text-align:center;min-width:120px;">
         <div style="margin-bottom:2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1E96C8"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></div>
         <div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;">TELEGRAM</div>
-        <div style="font-size:11px;font-weight:600;color:var(--accent);">@akrk_south</div>
+        <div style="font-size:11px;font-weight:600;color:var(--accent-ink);">@akrk_south</div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;text-align:center;min-width:120px;">
         <div style="margin-bottom:2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
         <div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;">INSTAGRAM</div>
-        <div style="font-size:11px;font-weight:600;color:var(--accent);">@akrk_south</div>
+        <div style="font-size:11px;font-weight:600;color:var(--accent-ink);">@akrk_south</div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;text-align:center;min-width:120px;">
         <div style="margin-bottom:2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
         <div style="font-size:8px;color:var(--text-muted);letter-spacing:1px;">YOUTUBE</div>
-        <div style="font-size:11px;font-weight:600;color:var(--accent);">@akrk_south</div>
+        <div style="font-size:11px;font-weight:600;color:var(--accent-ink);">@akrk_south</div>
       </div>
     </div>
   </div>
