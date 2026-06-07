@@ -379,9 +379,12 @@
     border: 1px solid var(--border);
     margin: 8px 0;
     position: relative;
+    aspect-ratio: 16/9;
   }
   .photo-wrap img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
   .photo-label {
@@ -401,7 +404,10 @@
     margin: 8px 0;
   }
   @media (max-width: 600px) { .photo-grid { grid-template-columns: 1fr; } }
-  .photo-grid .photo-wrap { margin: 0; }
+  .photo-grid .photo-wrap {
+    margin: 0;
+    aspect-ratio: 4/3;
+  }
 
   .slide-nav {
     position: fixed;
@@ -744,7 +750,7 @@
 
 <!-- 10: Ежегодное собрание АКРК -->
 <div class="slide">
-  <div class="slide-content">
+  <div class="slide-content wide">
     <div class="section-label reg">🟧 Региональный уровень · Февраль 2026</div>
     <h2>🏛 Ежегодное собрание АКРК в Ансане</h2>
     <div class="photo-wrap">
@@ -757,7 +763,7 @@
 
 <!-- 11: Турнир -->
 <div class="slide">
-  <div class="slide-content">
+  <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · 28.02.2026</div>
     <h2>🏓 III Турнир по настольному теннису</h2>
     <div class="photo-wrap">
@@ -780,12 +786,18 @@
 
 <!-- 12: Лекции -->
 <div class="slide">
-  <div class="slide-content">
+  <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · 15–16.05.2026</div>
     <h2>📚 Лекции Вадима Акуленко</h2>
-    <div class="photo-wrap">
-      <img src="images/lectures-group.jpg" alt="Лекции Вадима Акуленко, 15-16.05.2026" loading="lazy">
-      <span class="photo-label">📚 15-16.05.2026</span>
+    <div class="photo-grid">
+      <div class="photo-wrap">
+        <img src="images/lectures-group.jpg" alt="Лекции Вадима Акуленко, 15-16.05.2026" loading="lazy">
+        <span class="photo-label">📚 Групповое фото</span>
+      </div>
+      <div class="photo-wrap">
+        <img src="images/lectures-museum.jpg" alt="Экскурсия в Пусанский музей, 15.05.2026" loading="lazy">
+        <span class="photo-label">🏛 Музей</span>
+      </div>
     </div>
     <div class="kpi-row">
       <div class="kpi"><div class="kpi-num" style="color:var(--accent);">3</div><div class="kpi-label">лекции</div></div>
@@ -803,12 +815,18 @@
 
 <!-- 13: Global Gathering -->
 <div class="slide">
-  <div class="slide-content">
+  <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · 23.05.2026</div>
     <h2>🌍 Global Gathering — фестиваль народов мира</h2>
-    <div class="photo-wrap">
-      <img src="images/global-team-group.jpg" alt="Global Gathering, команда АКРК у стенда, 23.05.2026" loading="lazy">
-      <span class="photo-label">🌍 23.05.2026 · команда</span>
+    <div class="photo-grid">
+      <div class="photo-wrap">
+        <img src="images/global-team-group.jpg" alt="Global Gathering, команда АКРК у стенда, 23.05.2026" loading="lazy">
+        <span class="photo-label">🌍 Команда</span>
+      </div>
+      <div class="photo-wrap">
+        <img src="images/global-visitors.jpg" alt="Global Gathering, посетители у стенда АКРК, 23.05.2026" loading="lazy">
+        <span class="photo-label">🌍 Стенд</span>
+      </div>
     </div>
     <div class="kpi-row">
       <div class="kpi"><div class="kpi-num" style="color:var(--accent);">10+</div><div class="kpi-label">стран-участниц</div></div>
@@ -825,7 +843,7 @@
 
 <!-- 14: Молодёжное движение в Кимхэ -->
 <div class="slide">
-  <div class="slide-content">
+  <div class="slide-content wide">
     <div class="section-label reg">🟧 Событие · Март 2026</div>
     <h2>🚀 Молодёжное движение: встреча в Кимхэ</h2>
     <div class="photo-grid">
