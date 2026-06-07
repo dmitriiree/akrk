@@ -17,106 +17,112 @@
     --accent-bg: rgba(230,180,80,0.08);
     --radius: 12px;
     --font: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --nav-w: 220px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html {
-    scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; scroll-snap-type: none; }
-  }
   body {
     font-family: var(--font);
     background: var(--bg);
     color: var(--text);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    height: 100vh;
   }
 
-  /* Hero */
-  .hero {
-    min-height: 100vh;
+  /* ===== Layout ===== */
+  .app { display: flex; height: 100vh; }
+
+  /* ===== Sidebar ===== */
+  .sidebar {
+    width: var(--nav-w);
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 48px 24px;
-    position: relative;
-    overflow: hidden;
-    scroll-snap-align: start;
+    padding: 20px 12px;
+    overflow-y: auto;
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse at 30% 40%, rgba(230,180,80,0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 60%, rgba(230,180,80,0.04) 0%, transparent 50%);
-    pointer-events: none;
-  }
-  .hero-badge {
-    display: inline-block;
-    padding: 6px 16px;
-    border: 1px solid var(--accent-dim);
-    border-radius: 100px;
+  .sidebar-brand {
     font-size: 13px;
-    letter-spacing: 0.5px;
-    color: var(--accent);
-    margin-bottom: 24px;
-    font-weight: 500;
-  }
-  .hero h1 {
-    font-size: clamp(32px, 5vw, 64px);
     font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 12px;
-    position: relative;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding: 0 8px;
+    letter-spacing: -0.01em;
   }
-  .hero h1 span { color: var(--accent); }
-  .hero p {
-    font-size: clamp(16px, 2vw, 22px);
+  .sidebar-brand small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
     color: var(--text-muted);
-    max-width: 560px;
-    position: relative;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
   }
-  .hero-nav {
+  .nav-item {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 8px;
-    margin-top: 40px;
-    justify-content: center;
-    max-width: 640px;
-    position: relative;
-  }
-  .hero-nav a {
-    padding: 8px 16px;
-    border: 1px solid var(--border);
+    padding: 8px 10px;
     border-radius: 8px;
-    color: var(--text-muted);
-    text-decoration: none;
     font-size: 13px;
-    transition: all 0.2s;
-    background: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 2px;
   }
-  .hero-nav a:hover {
-    border-color: var(--accent-dim);
+  .nav-item:hover { color: var(--text); background: var(--surface-hover); }
+  .nav-item.active {
     color: var(--accent);
     background: var(--accent-bg);
   }
-
-  /* Sections */
-  section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 80px 24px;
-    scroll-snap-align: start;
+  .nav-num {
+    flex-shrink: 0;
+    width: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: right;
   }
-  section:last-of-type { padding-bottom: 120px; }
+  .nav-item.active .nav-num { color: var(--accent); }
+  .nav-label { flex: 1; }
+
+  /* ===== Main stage ===== */
+  .stage {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .slides-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide {
+    min-width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 72px;
+    overflow-y: auto;
+  }
+  @media (max-width: 700px) {
+    .sidebar { display: none; }
+    .slide { padding: 40px 24px; }
+  }
+
+  /* ===== Content inside slides ===== */
+  .slide-content {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
 
   .section-label {
     display: inline-block;
@@ -124,29 +130,30 @@
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 600;
   }
   h2 {
-    font-size: clamp(26px, 3.5vw, 36px);
+    font-size: clamp(28px, 3vw, 42px);
     font-weight: 700;
-    letter-spacing: -0.015em;
-    line-height: 1.15;
-    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 20px;
   }
   h3 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
-    margin-top: 28px;
-    margin-bottom: 8px;
+    margin-top: 20px;
+    margin-bottom: 6px;
     color: var(--text);
   }
-  p, li { font-size: 16px; color: var(--text-muted); }
-  p { margin-bottom: 12px; }
-  ul { list-style: none; margin-bottom: 16px; }
+  p { font-size: 15px; color: var(--text-muted); margin-bottom: 10px; }
+  ul { list-style: none; margin-bottom: 12px; }
   li {
-    padding: 6px 0 6px 20px;
+    padding: 4px 0 4px 18px;
     position: relative;
+    font-size: 15px;
+    color: var(--text-muted);
   }
   li::before {
     content: '—';
@@ -155,95 +162,119 @@
     color: var(--accent-dim);
   }
   li.num::before { display: none; }
-  li.num {
-    padding-left: 0;
-    color: var(--text);
-  }
+  li.num { padding-left: 0; color: var(--text); }
+
+  /* Cards */
   .grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-    margin: 16px 0;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
   }
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 14px;
     transition: border-color 0.2s;
   }
-  .card:hover { border-color: var(--accent-dim); }
-  .card h4 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .card p {
-    font-size: 13px;
-    margin: 0;
-  }
+  .card h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .card p { font-size: 13px; margin: 0; }
 
   blockquote {
     border-left: 2px solid var(--accent-dim);
-    margin: 16px 0;
-    padding: 12px 16px;
+    margin: 14px 0;
+    padding: 10px 14px;
     background: var(--accent-bg);
     border-radius: 0 var(--radius) var(--radius) 0;
     color: var(--text-muted);
     font-style: italic;
     font-size: 14px;
   }
-  blockquote a { color: var(--accent); }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 20px 0;
-  }
-
-  /* Video wrapper */
   .video-wrap {
-    margin: 16px 0;
+    margin: 12px 0;
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--border);
   }
   .video-wrap iframe {
     width: 100%;
-    height: 400px;
+    height: 340px;
     display: block;
     border: none;
   }
-  @media (max-width: 600px) {
-    .video-wrap iframe { height: 220px; }
-  }
+  @media (max-width: 600px) { .video-wrap iframe { height: 200px; } }
 
-  /* CTA / interactive boxes */
+  /* Icebreaker cards */
+  .ice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  @media (max-width: 700px) { .ice-grid { grid-template-columns: 1fr; } }
+  .ice-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .ice-icon { font-size: 28px; margin-bottom: 6px; }
+  .ice-card h4 { font-size: 14px; margin-bottom: 3px; }
+  .ice-card p { font-size: 12px; margin: 0; }
+
+  /* KPI */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .kpi-num { font-size: 26px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .kpi-label { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  .quarter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 14px 0;
+  }
+  @media (max-width: 600px) { .quarter-grid { grid-template-columns: 1fr; } }
+
   .interactive-box {
     background: var(--surface);
     border: 1px dashed var(--accent-dim);
     border-radius: var(--radius);
-    padding: 32px;
+    padding: 28px;
     text-align: center;
-    margin: 24px 0;
+    margin: 18px 0;
   }
   .interactive-box h3 { margin-top: 0; }
-  .interactive-box p { font-size: 14px; max-width: 400px; margin: 8px auto 16px; }
-
+  .interactive-box p { font-size: 14px; max-width: 380px; margin: 6px auto 14px; }
   .btn {
     display: inline-block;
-    padding: 10px 24px;
+    padding: 9px 20px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     background: var(--accent);
     color: #0f0f12;
     text-decoration: none;
     transition: opacity 0.2s;
     cursor: pointer;
+    border: none;
   }
   .btn:hover { opacity: 0.85; text-decoration: none; }
   .btn-outline {
@@ -251,457 +282,495 @@
     border: 1px solid var(--accent-dim);
     color: var(--accent);
   }
-  .btn-outline:hover { background: var(--accent-bg); }
 
-  /* Checkboxes */
-  .check { margin: 6px 0; font-size: 14px; color: var(--text-muted); }
-  .check input { margin-right: 8px; accent-color: var(--accent); }
+  .check { margin: 5px 0; font-size: 13px; color: var(--text-muted); }
+  .check input { margin-right: 6px; accent-color: var(--accent); }
 
-  /* Timeline */
-  .timeline { margin: 20px 0; }
-  .tl-item {
-    display: flex;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .tl-item:last-child { border: none; }
-  .tl-time {
-    flex-shrink: 0;
-    width: 60px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    text-align: right;
-  }
-  .tl-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
-  .tl-content p { font-size: 13px; margin: 0; }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 48px 24px;
-    color: var(--text-muted);
-    font-size: 13px;
-    border-top: 1px solid var(--border);
-  }
-  footer a { color: var(--accent); }
-
-  /* Agenda highlight */
+  /* Agenda */
   .agenda-list { counter-reset: agenda; }
   .agenda-item {
     counter-increment: agenda;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: baseline;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: var(--radius);
-    margin: 4px 0;
+    margin: 3px 0;
     transition: background 0.2s;
   }
   .agenda-item:hover { background: var(--surface); }
   .agenda-num {
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 7px;
     background: var(--accent-bg);
     color: var(--accent);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
   }
-  .agenda-text { font-size: 15px; color: var(--text); }
+  .agenda-text { font-size: 14px; color: var(--text); }
   .agenda-text small { color: var(--text-muted); font-weight: 400; }
 
-  /* Q3/Q4 columns */
-  .quarter-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin: 16px 0;
-  }
-  @media (max-width: 600px) { .quarter-grid { grid-template-columns: 1fr; } }
-
-  /* KPIs */
-  .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  /* ===== Navigation controls ===== */
+  .slide-nav {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
     gap: 12px;
-    margin: 20px 0;
-  }
-  .kpi {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 16px;
-    text-align: center;
+    border-radius: 100px;
+    padding: 6px 16px;
+    z-index: 100;
   }
-  .kpi-num {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
+  .slide-nav button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: all 0.15s;
   }
-  .kpi-label {
+  .slide-nav button:hover { color: var(--text); background: var(--surface-hover); }
+  .slide-nav .counter {
     font-size: 12px;
     color: var(--text-muted);
-    margin-top: 4px;
+    min-width: 48px;
+    text-align: center;
+    user-select: none;
   }
 
-  /* Icebreaker cards */
-  .ice-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    margin: 16px 0;
-  }
-  @media (max-width: 700px) { .ice-grid { grid-template-columns: 1fr; } }
-  .ice-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    text-align: center;
-    transition: border-color 0.2s;
-  }
-  .ice-card:hover { border-color: var(--accent-dim); }
-  .ice-icon { font-size: 32px; margin-bottom: 8px; }
-  .ice-card h4 { font-size: 14px; margin-bottom: 4px; }
-  .ice-card p { font-size: 13px; margin: 0; }
-
-  /* Divider */
-  .section-divider {
-    text-align: center;
-    padding: 12px 0;
-    color: var(--border);
-    font-size: 12px;
-    letter-spacing: 2px;
+  @media (max-width: 700px) {
+    .slide-nav { bottom: 12px; padding: 4px 12px; gap: 8px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
-<div class="hero">
-  <div class="hero-badge">Открытая встреча · 27 июня 2026</div>
-  <h1>АКРК <span>Пусан</span></h1>
-  <p>Информационная сессия для корё-сарам и всех заинтересованных</p>
-  <div class="hero-nav">
-    <a href="#about">Организация</a>
-    <a href="#results">Результаты</a>
-    <a href="#membership">Членство</a>
-    <a href="#plans">Планы</a>
-    <a href="#join">Вступление</a>
-    <a href="#icebreaker">Айсбрейкер</a>
-    <a href="#quiz">Квиз</a>
-    <a href="#teambuilding">Тимбилдинг</a>
-  </div>
-</div>
+<div class="app">
 
-<!-- ============ АГЕНДА ============ -->
-<section id="agenda">
-  <div class="section-label">Повестка</div>
-  <h2>Что вас ждёт</h2>
-  <div class="agenda-list">
-    <div class="agenda-item">
-      <div class="agenda-num">1</div>
-      <div class="agenda-text">Приветствие + Айсбрейкер <small>· знакомство участников</small></div>
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      АКРК Пусан
+      <small>27 июня 2026</small>
     </div>
-    <div class="agenda-item" style="background: var(--accent-bg); border-radius: var(--radius);">
-      <div class="agenda-num" style="background: var(--accent); color: #0f0f12;">🎙</div>
-      <div class="agenda-text" style="color: var(--accent); font-weight: 600;">Видеоприветствие президента АКРК <small style="color: var(--accent-dim);">· по видеосвязи, приветствие новых членов</small></div>
+    <button class="nav-item active" data-slide="0" onclick="goSlide(0)">
+      <span class="nav-num">00</span>
+      <span class="nav-label">Обложка</span>
+    </button>
+    <button class="nav-item" data-slide="1" onclick="goSlide(1)">
+      <span class="nav-num">01</span>
+      <span class="nav-label">Повестка</span>
+    </button>
+    <button class="nav-item" data-slide="2" onclick="goSlide(2)">
+      <span class="nav-num">02</span>
+      <span class="nav-label">Что такое АКРК</span>
+    </button>
+    <button class="nav-item" data-slide="3" onclick="goSlide(3)">
+      <span class="nav-num">03</span>
+      <span class="nav-label">Видео: президент</span>
+    </button>
+    <button class="nav-item" data-slide="4" onclick="goSlide(4)">
+      <span class="nav-num">04</span>
+      <span class="nav-label">Наши результаты</span>
+    </button>
+    <button class="nav-item" data-slide="5" onclick="goSlide(5)">
+      <span class="nav-num">05</span>
+      <span class="nav-label">Что даёт членство</span>
+    </button>
+    <button class="nav-item" data-slide="6" onclick="goSlide(6)">
+      <span class="nav-num">06</span>
+      <span class="nav-label">Планы на 2-е полугодие</span>
+    </button>
+    <button class="nav-item" data-slide="7" onclick="goSlide(7)">
+      <span class="nav-num">07</span>
+      <span class="nav-label">Вступление</span>
+    </button>
+    <button class="nav-item" data-slide="8" onclick="goSlide(8)">
+      <span class="nav-num">08</span>
+      <span class="nav-label">🎯 Айсбрейкер</span>
+    </button>
+    <button class="nav-item" data-slide="9" onclick="goSlide(9)">
+      <span class="nav-num">09</span>
+      <span class="nav-label">🎮 Квиз</span>
+    </button>
+    <button class="nav-item" data-slide="10" onclick="goSlide(10)">
+      <span class="nav-num">10</span>
+      <span class="nav-label">🤝 Тимбилдинг</span>
+    </button>
+    <button class="nav-item" data-slide="11" onclick="goSlide(11)">
+      <span class="nav-num">11</span>
+      <span class="nav-label">Материалы</span>
+    </button>
+  </aside>
+
+  <!-- ===== SLIDES ===== -->
+  <div class="stage">
+    <div class="slides-wrapper" id="slidesWrapper">
+
+      <!-- SLIDE 0: Hero -->
+      <div class="slide" style="text-align: center;">
+        <div class="slide-content" style="max-width:600px;">
+          <div style="display:inline-block;padding:5px 14px;border:1px solid var(--accent-dim);border-radius:100px;font-size:12px;letter-spacing:.5px;color:var(--accent);margin-bottom:20px;">Открытая встреча · 27 июня 2026</div>
+          <h2 style="font-size:clamp(36px,5vw,60px);margin-bottom:8px;">АКРК <span style="color:var(--accent);">Пусан</span></h2>
+          <p style="font-size:clamp(15px,1.8vw,20px);max-width:480px;margin:0 auto 32px;">Информационная сессия для корё-сарам и всех заинтересованных</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+            <button class="btn" onclick="goSlide(1)">К повестке</button>
+            <button class="btn btn-outline" onclick="goSlide(8)">🎯 Айсбрейкер</button>
+          </div>
+          <div style="margin-top:36px;font-size:12px;color:var(--border);letter-spacing:1px;">↓ стрелки / колесо мыши для навигации</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1: Повестка -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Повестка</div>
+          <h2>Что вас ждёт</h2>
+          <div class="agenda-list">
+            <div class="agenda-item">
+              <div class="agenda-num">1</div>
+              <div class="agenda-text">Приветствие + Айсбрейкер <small>· знакомство</small></div>
+            </div>
+            <div class="agenda-item" style="background:var(--accent-bg);border-radius:var(--radius);">
+              <div class="agenda-num" style="background:var(--accent);color:#0f0f12;">🎙</div>
+              <div class="agenda-text" style="color:var(--accent);font-weight:600;">Видеоприветствие президента АКРК <small style="color:var(--accent-dim);">· по видеосвязи</small></div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">3</div>
+              <div class="agenda-text">Что такое АКРК <small>· миссия и цели</small></div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">4</div>
+              <div class="agenda-text">Наши результаты <small>· 1-е полугодие 2026</small></div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">5</div>
+              <div class="agenda-text">Что даёт членство <small>· преимущества</small></div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">6</div>
+              <div class="agenda-text">Членские взносы <small>· на что идут</small></div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">7</div>
+              <div class="agenda-text">Планы на 2-е полугодие</div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">8</div>
+              <div class="agenda-text">Процесс вступления</div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">9</div>
+              <div class="agenda-text">Квиз <small>· проверь себя</small></div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">10</div>
+              <div class="agenda-text" style="color:var(--accent);">Тимбилдинг — неформальное общение</div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">11</div>
+              <div class="agenda-text">Вопросы и ответы</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Что такое АКРК -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Блок 1</div>
+          <h2>Что такое АКРК</h2>
+          <p>Ассоциация корё-сарам Республики Корея — объединение, которое даёт сообществу голос во взаимодействии с государством, мэриями и министерствами.</p>
+          <ul>
+            <li>В Корее государство работает с организованными группами, а не с отдельными людьми</li>
+            <li>Три функции: <strong>собрать</strong> (агрегация), <strong>объяснить</strong> (артикуляция), <strong>соединить</strong> (медиация)</li>
+            <li>Без структуры корё-сарам — совокупность отдельных историй. Со структурой — участники процесса</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: Видео президента + 3 функции -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Блок 1 · Видео</div>
+          <h2>Президент АКРК — кто мы и зачем</h2>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/NpSynTB0NL0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="grid-2">
+            <div class="card"><h4>Собрать</h4><p>Объединение голосов корё-сарам в единую позицию</p></div>
+            <div class="card"><h4>Объяснить</h4><p>Формулирование запросов сообщества понятным языком</p></div>
+            <div class="card"><h4>Соединить</h4><p>Вывод сообщества к мэриям, министерствам, госведомствам</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: Результаты -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Блок 2</div>
+          <h2>Наши результаты за 1-е полугодие 2026</h2>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-num">28</div><div class="kpi-label">участников турнира из 10 городов</div></div>
+            <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">лекции + экскурсия</div></div>
+            <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">медиа-канала запущено</div></div>
+            <div class="kpi"><div class="kpi-num">7</div><div class="kpi-label">рабочих направлений</div></div>
+          </div>
+          <div class="grid-2">
+            <div class="card"><h4>🏓 Турнир (28.02)</h4><p>28 участников, 10 городов, до 60 чел. на площадке</p></div>
+            <div class="card"><h4>📚 Лекции (15-16.05)</h4><p>3 лекции + экскурсия в музей Пусана. Вадим Акуленко</p></div>
+            <div class="card"><h4>🌍 Global Gathering (23.05)</h4><p>Стенд АКРК, нац. кухня, костюмы, сувениры</p></div>
+            <div class="card"><h4>📱 Медиа</h4><p>Instagram, Facebook, YouTube. KIIP-тренажёр. Контактная база</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: Членство -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Блок 3</div>
+          <h2>Что даёт членство</h2>
+          <div class="grid-2">
+            <div class="card"><h4>Нетворкинг</h4><p>Предприниматели, профессионалы, единомышленники</p></div>
+            <div class="card"><h4>Мероприятия</h4><p>Турниры, лекции, экскурсии, фестивали</p></div>
+            <div class="card"><h4>Волонтёрские часы</h4><p>1365 — учитываются при ПМЖ и гражданстве</p></div>
+            <div class="card"><h4>Стипендия</h4><p>Реальный кейс — Ирина Ким</p></div>
+            <div class="card"><h4>Поддержка</h4><p>Право, миграция, медицина, образование</p></div>
+            <div class="card"><h4>Сообщество</h4><p>Связи, взаимопомощь среди своих</p></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+            <a class="btn btn-outline" href="https://youtube.com/shorts/yYr2mpMD9n0" target="_blank" style="font-size:12px;">▶ Shorts: нетворкинг</a>
+            <a class="btn btn-outline" href="https://youtube.com/shorts/0gjtNFgQF9Y" target="_blank" style="font-size:12px;">▶ Shorts: личная история</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: Планы -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Блок 4</div>
+          <h2>Планы на 2-е полугодие</h2>
+          <div class="quarter-grid">
+            <div>
+              <h3>Q3 · Июль — Сентябрь</h3>
+              <ul>
+                <li>Волонтёрство: донорство крови, 1365</li>
+                <li>Молодёжное движение: пикники, спорт</li>
+                <li>Лекции со Светланой Цай (сентябрь)</li>
+                <li>Взаимодействие с мэрией Пусана</li>
+                <li>Развитие партнёрств и соцсетей</li>
+                <li>KIIP-тренажёр: 5-й уровень</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Q4 · Октябрь — Декабрь</h3>
+              <ul>
+                <li>Шахматный турнир в Пусане</li>
+                <li>Исторический лагерь в Теджоне</li>
+                <li>Подарки к Чусок</li>
+                <li>Подкасты</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7: Вступление -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Блок 5</div>
+          <h2>Процесс вступления</h2>
+          <ul>
+            <li>Заполнение формы вступления</li>
+            <li>Добавление в Telegram-группу АКРК Пусан</li>
+            <li>Действительные (с взносами) и обычные члены</li>
+          </ul>
+          <h3 style="margin-top:24px;">На что идут членские взносы</h3>
+          <ul>
+            <li>Проекты: спикеры, материалы, площадки</li>
+            <li>Софинансирование 50/50 с госагентствами</li>
+            <li>Операционная устойчивость организации</li>
+            <li>Ежегодный буклет + финансовый отчёт</li>
+          </ul>
+          <div class="video-wrap" style="margin-top:10px;">
+            <iframe src="https://www.youtube.com/embed/ka4CFgY_mP8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8: Айсбрейкер -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">🎯 Интерактив</div>
+          <h2>Айсбрейкер</h2>
+          <p>5–10 минут. Расслабить людей, создать контакт до контента. Многие придут впервые.</p>
+          <div class="ice-grid">
+            <div class="ice-card">
+              <div class="ice-icon">🎭</div>
+              <h4>Два факта и ложь</h4>
+              <p>Каждый называет три факта, остальные угадывают ложь</p>
+            </div>
+            <div class="ice-card">
+              <div class="ice-icon">🔍</div>
+              <h4>Найди человека...</h4>
+              <p>Карточки с заданиями: «кто живёт в Пусане меньше года» и т.д.</p>
+            </div>
+            <div class="ice-card">
+              <div class="ice-icon">👋</div>
+              <h4>Быстрые интро</h4>
+              <p>По кругу: имя, откуда, один факт о себе</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9: Квиз -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">🎮 Интерактив</div>
+          <h2>Квиз по материалам сессии</h2>
+          <p>10–15 вопросов. Участники отвечают с телефонов. Real-time лидерборд. Призы победителям.</p>
+          <div class="interactive-box">
+            <h3>Kahoot! или Slido</h3>
+            <p>Ссылка появится здесь перед мероприятием</p>
+            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+              <a class="btn" href="#" onclick="alert('Ссылка на Kahoot! будет добавлена')">Kahoot!</a>
+              <a class="btn btn-outline" href="#" onclick="alert('Ссылка на Slido будет добавлена')">Slido</a>
+            </div>
+          </div>
+          <div style="margin-top:10px;">
+            <div class="check"><input type="checkbox" id="qz1"><label for="qz1">Выбрать платформу</label></div>
+            <div class="check"><input type="checkbox" id="qz2"><label for="qz2">Составить 10–15 вопросов</label></div>
+            <div class="check"><input type="checkbox" id="qz3"><label for="qz3">Подготовить призы топ-3</label></div>
+            <div class="check"><input type="checkbox" id="qz4"><label for="qz4">Протестировать Wi-Fi, экран, звук</label></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 10: Тимбилдинг -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">🤝 Интерактив</div>
+          <h2>Тимбилдинг</h2>
+          <p>После программы — чтобы люди не разошлись сразу, а пообщались неформально.</p>
+          <div class="grid-2">
+            <div class="card"><h4>👥 Мини-группы</h4><p>Обсудить «что бы вы хотели видеть от АКРК» и представить</p></div>
+            <div class="card"><h4>📸 Общие фото</h4><p>Для соцсетей и истории организации</p></div>
+            <div class="card"><h4>🍕 Еда и напитки</h4><p>Неформальная часть, свободное общение</p></div>
+            <div class="card"><h4>💬 Вопросы спикерам</h4><p>Один на один, вне сцены</p></div>
+          </div>
+          <blockquote>Определить: формат, бюджет на еду/напитки, тайминг 30–60 минут.</blockquote>
+        </div>
+      </div>
+
+      <!-- SLIDE 11: Материалы -->
+      <div class="slide">
+        <div class="slide-content">
+          <div class="section-label">Подготовка</div>
+          <h2>Презентационные материалы</h2>
+          <div class="check"><input type="checkbox" id="m1"><label for="m1">Презентация (слайды: миссия, деятельность, планы)</label></div>
+          <div class="check"><input type="checkbox" id="m2"><label for="m2">Брошюры / раздатка для новых участников</label></div>
+          <div class="check"><input type="checkbox" id="m3"><label for="m3">Анонс собрания (соцсети, мессенджеры)</label></div>
+          <h3>Можно переиспользовать</h3>
+          <div class="grid-2">
+            <div class="card"><h4>Презентация 22.02</h4><p>slides.pptx, прошлое собрание</p></div>
+            <div class="card"><h4>Результаты опроса</h4><p>Оформленная презентация</p></div>
+            <div class="card"><h4>Стратегия 2026</h4><p>стратегия_2026_пусан_v1.pptx</p></div>
+            <div class="card"><h4>Промо материалы</h4><p>Баннеры, rollup, PDF, лого</p></div>
+          </div>
+          <div style="margin-top:24px;text-align:center;font-size:13px;color:var(--text-muted);">
+            <strong style="color:var(--accent);">АКРК Пусан</strong> · @akrk_south<br>
+            <a href="https://t.me/akrk_south" target="_blank">Telegram</a> ·
+            <a href="https://instagram.com/akrk_south" target="_blank">Instagram</a> ·
+            <a href="https://youtube.com/@akrk_south" target="_blank">YouTube</a> ·
+            <a href="https://facebook.com/akrk_south" target="_blank">Facebook</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /slides-wrapper -->
+
+    <!-- Bottom nav bar -->
+    <div class="slide-nav">
+      <button onclick="prevSlide()" title="Назад (←)">◀</button>
+      <span class="counter" id="slideCounter">1 / 12</span>
+      <button onclick="nextSlide()" title="Вперёд (→)">▶</button>
     </div>
-    <div class="agenda-item">
-      <div class="agenda-num">2</div>
-      <div class="agenda-text">Что такое АКРК <small>· миссия и цели организации</small></div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">3</div>
-      <div class="agenda-text">Наши результаты <small>· мероприятия и проекты за 1-е полугодие 2026</small></div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">4</div>
-      <div class="agenda-text">Что даёт членство <small>· преимущества и возможности</small></div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">5</div>
-      <div class="agenda-text">Членские взносы <small>· на что идут</small></div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">6</div>
-      <div class="agenda-text">Планы на второе полугодие</div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">7</div>
-      <div class="agenda-text">Процесс вступления</div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">8</div>
-      <div class="agenda-text">Квиз <small>· проверь, что запомнил</small></div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">9</div>
-      <div class="agenda-text" style="color: var(--accent);">Тимбилдинг — неформальное общение</div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-num">10</div>
-      <div class="agenda-text">Вопросы и ответы</div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ 1. ОРГАНИЗАЦИЯ ============ -->
-<section id="about">
-  <div class="section-label">Блок 1</div>
-  <h2>Что такое АКРК</h2>
+  </div><!-- /stage -->
+</div><!-- /app -->
 
-  <p>Ассоциация корё-сарам Республики Корея (АКРК) — объединение корейцев постсоветского пространства. Организация существует, чтобы сообщество имело голос и могло взаимодействовать с государством, мэриями и министерствами.</p>
+<script>
+  let current = 0;
+  const total = document.querySelectorAll('.slide').length;
+  const wrapper = document.getElementById('slidesWrapper');
+  const counter = document.getElementById('slideCounter');
+  const navItems = document.querySelectorAll('.nav-item');
 
-  <h3>Зачем нужна организация</h3>
-  <ul>
-    <li>В Корее государство взаимодействует с организованными группами, а не с отдельными людьми</li>
-    <li>Один человек — частная история. Сигнал к изменениям появляется, когда проблема повторяется у многих</li>
-    <li>Три функции АКРК: собрать (агрегация), объяснить (артикуляция), соединить (медиация)</li>
-    <li>АКРК выводит сообщество во внешнее пространство — к мэриям, министерствам, госведомствам</li>
-    <li>Без структуры корё-сарам — совокупность отдельных историй. Со структурой — участники процесса</li>
-  </ul>
+  function update() {
+    wrapper.style.transform = `translateX(-${current * 100}%)`;
+    counter.textContent = `${current + 1} / ${total}`;
+    navItems.forEach((item, i) => {
+      item.classList.toggle('active', i === current);
+    });
+  }
 
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/NpSynTB0NL0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-  </div>
+  function goSlide(n) {
+    if (n < 0) n = 0;
+    if (n >= total) n = total - 1;
+    current = n;
+    update();
+  }
 
-  <h3>Три функции АКРК (из видео президента)</h3>
-  <div class="grid-2">
-    <div class="card"><h4>Собрать</h4><p>Агрегация — объединение голосов корё-сарам в единую позицию</p></div>
-    <div class="card"><h4>Объяснить</h4><p>Артикуляция — формулирование запросов сообщества понятным языком</p></div>
-    <div class="card"><h4>Соединить</h4><p>Медиация — вывод сообщества к мэриям, министерствам и госведомствам</p></div>
-  </div>
-</section>
+  function nextSlide() { goSlide(current + 1); }
+  function prevSlide() { goSlide(current - 1); }
 
-<!-- ============ 2. РЕЗУЛЬТАТЫ ============ -->
-<section id="results">
-  <div class="section-label">Блок 2</div>
-  <h2>Наши результаты за 1-е полугодие 2026</h2>
-  <p>Конкретные достижения с цифрами и фактами.</p>
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      nextSlide();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      prevSlide();
+    }
+  });
 
-  <div class="kpi-row">
-    <div class="kpi"><div class="kpi-num">28</div><div class="kpi-label">участников турнира из 10 городов</div></div>
-    <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">лекции + экскурсия</div></div>
-    <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">медиа-канала запущено</div></div>
-    <div class="kpi"><div class="kpi-num">7</div><div class="kpi-label">рабочих направлений</div></div>
-  </div>
+  // Mouse wheel (debounced)
+  let wheelTimeout = false;
+  document.querySelector('.stage').addEventListener('wheel', (e) => {
+    if (wheelTimeout) return;
+    wheelTimeout = true;
+    setTimeout(() => { wheelTimeout = false; }, 600);
+    if (e.deltaY > 0) nextSlide();
+    else prevSlide();
+  }, { passive: true });
 
-  <h3>III Турнир по настольному теннису (28.02)</h3>
-  <ul>
-    <li>28 участников из 10 городов Кореи, до 60 человек на площадке</li>
-    <li>Совместно с Ассоциацией настольного тенниса Пусана</li>
-  </ul>
-
-  <h3>Лекции Вадима Акуленко (15–16.05)</h3>
-  <ul>
-    <li>3 лекции + экскурсия в музей Пусана</li>
-    <li>Темы: корейские имена (понгван), история переселения корё-сарам, места памяти</li>
-  </ul>
-
-  <h3>Global Gathering — фестиваль народов мира (23.05)</h3>
-  <ul>
-    <li>Стенд АКРК на крупнейшем международном фестивале Пусана</li>
-    <li>Национальная кухня, костюмы, сувениры</li>
-  </ul>
-
-  <h3>Медиа и инструменты</h3>
-  <ul>
-    <li>Запущены Instagram, Facebook, YouTube каналы АКРК Пусан</li>
-    <li>Запущен KIIP-тренажёр</li>
-    <li>Структурирована контактная база</li>
-  </ul>
-
-  <h3>Внутренняя работа</h3>
-  <ul>
-    <li>Предварительный опрос: выявлены ключевые проблемы (языковой барьер, адаптация, дети)</li>
-    <li>Совещание 22.03: определены 7 рабочих направлений на 2026</li>
-  </ul>
-</section>
-
-<!-- ============ 3. ЧЛЕНСТВО ============ -->
-<section id="membership">
-  <div class="section-label">Блок 3</div>
-  <h2>Что даёт членство</h2>
-
-  <div class="grid-2">
-    <div class="card"><h4>Нетворкинг</h4><p>Знакомства с предпринимателями, профессионалами, единомышленниками</p></div>
-    <div class="card"><h4>Мероприятия</h4><p>Турниры, лекции, экскурсии, фестивали с участием АКРК</p></div>
-    <div class="card"><h4>Волонтёрские часы</h4><p>Учитываются при ПМЖ и гражданстве (1365)</p></div>
-    <div class="card"><h4>Стипендиальный грант</h4><p>Реальный кейс от Ирины Ким</p></div>
-    <div class="card"><h4>Информационная поддержка</h4><p>Право, миграция, медицина, образование</p></div>
-    <div class="card"><h4>Сообщество</h4><p>Связи, контакты, взаимопомощь среди своих</p></div>
-  </div>
-
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/yYr2mpMD9n0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-  </div>
-
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/0gjtNFgQF9Y" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-  </div>
-
-  <blockquote>«Если хотите менять жизнь — не ждите кого-то, делайте сами» — личная история участницы АКРК</blockquote>
-</section>
-
-<!-- ============ 4. ПЛАНЫ ============ -->
-<section id="plans">
-  <div class="section-label">Блок 4</div>
-  <h2>Планы на 2-е полугодие</h2>
-
-  <div class="quarter-grid">
-    <div>
-      <h3>Q3 · Июль — Сентябрь</h3>
-      <ul>
-        <li>Волонтёрство: донорство крови, инструкции по 1365</li>
-        <li>Молодёжное движение: пикники, образование, спорт</li>
-        <li>Лекции: продолжение со Светланой Цай (сентябрь)</li>
-        <li>Взаимодействие с мэрией Пусана</li>
-        <li>Развитие партнёрств и спонсорства</li>
-        <li>Развитие соцсетей (Instagram, Facebook, YouTube)</li>
-        <li>KIIP-тренажёр: 5-й уровень</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Q4 · Октябрь — Декабрь</h3>
-      <ul>
-        <li>Шахматный турнир в Пусане</li>
-        <li>Исторический лагерь в Теджоне (октябрь)</li>
-        <li>Подарки к Чусок для партнёров</li>
-        <li>Подкасты</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 5. ВСТУПЛЕНИЕ ============ -->
-<section id="join">
-  <div class="section-label">Блок 5</div>
-  <h2>Процесс вступления и членство</h2>
-
-  <h3>На встрече:</h3>
-  <ul>
-    <li>Заполнение формы вступления</li>
-    <li>Добавление в Telegram-группу АКРК Пусан</li>
-    <li>Разница между действительными и обычными членами</li>
-  </ul>
-
-  <h3>На что идут членские взносы</h3>
-  <ul>
-    <li>Проекты: спикеры, материалы, площадки, техническое сопровождение</li>
-    <li>Большинство программ требуют софинансирования (50/50 с агентством по делам зарубежных корейцев)</li>
-    <li>Операционная устойчивость: документы, коммуникации, координация</li>
-    <li>Ежегодный буклет о работе и финансовый отчёт для действительных членов</li>
-    <li>Взносы — не плата кому-то, а участие в создании устойчивой базы</li>
-  </ul>
-
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/ka4CFgY_mP8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-  </div>
-
-  <blockquote>Важно прояснить внутренне до встречи, чтобы на собрании давать чёткие ответы.</blockquote>
-</section>
-
-<!-- ============ 6. АЙСБРЕЙКЕР ============ -->
-<section id="icebreaker">
-  <div class="section-label">🎯 Интерактив</div>
-  <h2>Айсбрейкер</h2>
-  <p>Начало сессии: 5–10 минут. Цель — расслабить людей, создать контакт до погружения в контент. Многие придут впервые и никого не знают.</p>
-
-  <div class="ice-grid">
-    <div class="ice-card">
-      <div class="ice-icon">🎭</div>
-      <h4>Два факта и ложь</h4>
-      <p>Каждый называет три факта о себе, остальные угадывают ложь</p>
-    </div>
-    <div class="ice-card">
-      <div class="ice-icon">🔍</div>
-      <h4>Найди человека...</h4>
-      <p>Карточки с заданиями: найди того, кто живёт в Пусане меньше года, кто играет в теннис и т.д.</p>
-    </div>
-    <div class="ice-card">
-      <div class="ice-icon">👋</div>
-      <h4>Быстрые интро</h4>
-      <p>По кругу: имя, откуда приехал, один факт о себе</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 7. КВИЗ ============ -->
-<section id="quiz">
-  <div class="section-label">🎮 Интерактив</div>
-  <h2>Квиз по материалам сессии</h2>
-  <p>10–15 вопросов по содержанию презентации. Участники отвечают с телефонов. Real-time лидерборд определяет победителей.</p>
-
-  <div class="interactive-box">
-    <h3>Kahoot! или Slido</h3>
-    <p>Выберите платформу для квиза. Ссылка появится здесь перед мероприятием.</p>
-    <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-      <a class="btn" href="#" onclick="alert('Ссылка на Kahoot! будет добавлена перед мероприятием')">Kahoot!</a>
-      <a class="btn btn-outline" href="#" onclick="alert('Ссылка на Slido будет добавлена перед мероприятием')">Slido</a>
-    </div>
-  </div>
-
-  <div style="margin-top: 20px;">
-    <h3>Подготовить до встречи</h3>
-    <div class="check"><input type="checkbox" id="quiz1"><label for="quiz1">Выбрать платформу (Kahoot! / Slido)</label></div>
-    <div class="check"><input type="checkbox" id="quiz2"><label for="quiz2">Составить 10–15 вопросов по всем блокам повестки</label></div>
-    <div class="check"><input type="checkbox" id="quiz3"><label for="quiz3">Подготовить призы для победителей (топ-3)</label></div>
-    <div class="check"><input type="checkbox" id="quiz4"><label for="quiz4">Протестировать техническую часть (Wi-Fi, экран, звук)</label></div>
-  </div>
-</section>
-
-<!-- ============ 8. ТИМБИЛДИНГ ============ -->
-<section id="teambuilding">
-  <div class="section-label">🤝 Интерактив</div>
-  <h2>Тимбилдинг</h2>
-  <p>После основной программы. Цель — чтобы люди не разошлись сразу, а пообщались в неформальной обстановке.</p>
-
-  <div class="grid-2">
-    <div class="card"><h4>Мини-групповые задания</h4><p>Обсудить в группах «что бы вы хотели видеть от АКРК» и представить</p></div>
-    <div class="card"><h4>Общие фото</h4><p>Запечатлеть момент для соцсетей и истории организации</p></div>
-    <div class="card"><h4>Неформальная часть</h4><p>Еда, напитки, свободное общение</p></div>
-    <div class="card"><h4>Вопросы спикерам</h4><p>Возможность задать вопросы один на один</p></div>
-  </div>
-
-  <blockquote>Определить до встречи: формат, бюджет на еду/напитки, тайминг 30–60 минут.</blockquote>
-</section>
-
-<!-- ============ ПРЕЗЕНТАЦИОННЫЕ МАТЕРИАЛЫ ============ -->
-<section id="materials">
-  <div class="section-label">Подготовка</div>
-  <h2>Презентационные материалы</h2>
-
-  <div class="check"><input type="checkbox" id="mat1"><label for="mat1">Презентация (слайды: миссия, деятельность, планы)</label></div>
-  <div class="check"><input type="checkbox" id="mat2"><label for="mat2">Брошюры / раздаточный материал для новых участников</label></div>
-  <div class="check"><input type="checkbox" id="mat3"><label for="mat3">Анонс собрания (соцсети, мессенджеры)</label></div>
-
-  <h3>Существующие материалы для переиспользования</h3>
-  <ul>
-    <li>Презентация прошлого собрания (22.02) — slides.pptx</li>
-    <li>Результаты опроса — оформленная презентация</li>
-    <li>Стратегия-презентация — стратегия_2026_пусан_v1.pptx</li>
-    <li>Промо материалы — баннеры, rollup, PDF, лого</li>
-    <li>Устав АКРК (рус) — PDF</li>
-  </ul>
-</section>
-
-<!-- ============ ФУТЕР ============ -->
-<footer>
-  <strong>АКРК Пусан</strong> · @akrk_south<br>
-  <a href="https://t.me/akrk_south" target="_blank">Telegram</a> ·
-  <a href="https://instagram.com/akrk_south" target="_blank">Instagram</a> ·
-  <a href="https://youtube.com/@akrk_south" target="_blank">YouTube</a> ·
-  <a href="https://facebook.com/akrk_south" target="_blank">Facebook</a><br>
-  <span style="font-size: 12px; opacity: 0.6;">Информационная сессия · 27 июня 2026</span>
-</footer>
+  // Touch support
+  let touchStartY = 0;
+  document.querySelector('.stage').addEventListener('touchstart', (e) => {
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+  document.querySelector('.stage').addEventListener('touchend', (e) => {
+    const diff = touchStartY - e.changedTouches[0].screenY;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  }, { passive: true });
+</script>
 
 </body>
 </html>
