@@ -249,7 +249,7 @@
     justify-items: center;
     justify-content: center;
   }
-  @media (max-width: 700px) { .grid-3 { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .grid-3 { grid-template-columns: 1fr; } .s21-grid { grid-template-columns: 1fr !important; } }
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1190,10 +1190,10 @@
   <div class="slide-content" style="text-align:center;">
     <div class="section-label inter">🎉 Завершение</div>
     <h2>Благодарим за участие!</h2>
-    <div class="grid-3">
-      <div class="card"><h4>💬 Q&A</h4><p>Вопросы, предложения, обратная связь</p></div>
-      <div class="card"><h4>📸 Совместное фото</h4><p>На память о первой встрече</p></div>
-      <div class="card"><h4>☕ Свободное общение</h4><p>Напитки, неформальное общение</p></div>
+    <div class="s21-grid" style="display:inline-grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px auto 0;justify-items:center;">
+      <div class="card" style="text-align:center;width:100%;"><h4>💬 Q&A</h4><p>Вопросы, предложения, обратная связь</p></div>
+      <div class="card" style="text-align:center;width:100%;"><h4>📸 Совместное фото</h4><p>На память о первой встрече</p></div>
+      <div class="card" style="text-align:center;width:100%;"><h4>☕ Свободное общение</h4><p>Напитки, неформальное общение</p></div>
     </div>
     <p style="font-size:11px;color:var(--text-muted);margin-top:12px;">Подписывайтесь и следите за новостями:</p>
     <div style="display:inline-flex;gap:10px;flex-wrap:wrap;margin:8px auto 0;justify-content:center;">
