@@ -161,7 +161,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 48px 64px;
+    padding: 44px 64px;
     overflow-y: auto;
   }
   /* Mobile: vertical scroll mode */
@@ -444,12 +444,12 @@
     grid-template-columns: 1.15fr 1fr;
     gap: 28px;
     align-items: start;
-    margin-top: 12px;
+    margin-top: 8px;
   }
   .col-photo {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
   .col-photo .photo-wrap {
     aspect-ratio: 4/3;
@@ -458,6 +458,12 @@
   .col-photo .photo-wrap.portrait {
     aspect-ratio: 3/4;
   }
+  /* When two photos are stacked, cap each so the slide fits one screen */
+  .col-photo:has(.photo-wrap + .photo-wrap) .photo-wrap { max-height: 348px; }
+  /* If the text column ends with a photo, align its bottom edge with the photo column */
+  .slide-cols:has(.col-text > .photo-wrap:last-child) { align-items: stretch; }
+  .slide-cols:has(.col-text > .photo-wrap:last-child) .col-text { display: flex; flex-direction: column; }
+  .col-text > .photo-wrap:last-child { margin-top: auto; }
   .col-text { line-height: 1.5; }
   @media (max-width: 700px) {
     .slide-cols {
@@ -480,6 +486,12 @@
     border-radius: 100px;
     padding: 4px 14px;
     z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .slide-nav.visible,
+  .slide-nav:hover {
+    opacity: 1;
   }
   .slide-nav button {
     background: none;
@@ -1229,7 +1241,7 @@
           <li>Почетный гость — Генеральный консул Республики Казахстан в Пусане</li>
           <li>Спонсоры: церковь SOOYOUNGRO, ROYAL FOOD, NOALYUT</li>
         </ul>
-        <div class="photo-wrap" style="margin-top:12px;">
+        <div class="photo-wrap">
           <img src="images/tournament-group.jpg" alt="III Турнир по настольному теннису, групповая фотография" loading="lazy">
           <span class="photo-label">🏓 Участники</span>
         </div>
@@ -1270,7 +1282,7 @@
           <li>День 2: «Переселение русскоговорящих корейцев» + «Места памяти корё-сарам»</li>
           <li>Семьи с детьми, гости из других городов, живые интервью участников</li>
         </ul>
-        <div class="photo-wrap" style="margin-top:10px;">
+        <div class="photo-wrap">
           <img src="images/lectures-museum-2.jpg" alt="Пусанский государственный музей" loading="lazy">
           <span class="photo-label">🏛 Пусанский музей</span>
         </div>
@@ -1392,8 +1404,8 @@
     <div class="section-label" style="color:#c0392b;">🩸 Волонтёрство</div>
     <h2>100 лет жизни — <span style="color:#c0392b;">за 10 минут</span></h2>
     <div class="slide-cols">
-      <div class="col-photo">
-        <img src="images/donor-blood.jpg" alt="100 лет жизни, дарованных 10 минутами донорства" loading="lazy" style="width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--border);">
+      <div class="col-photo" style="align-items:center;">
+        <img src="images/donor-blood.jpg" alt="100 лет жизни, дарованных 10 минутами донорства" loading="lazy" style="max-height:460px;width:auto;max-width:100%;height:auto;display:block;margin:0 auto;border-radius:8px;border:1px solid var(--border);">
       </div>
       <div class="col-text">
         <blockquote style="margin:0 0 10px;font-size:13px;font-style:italic;color:var(--text);"><strong>Подарите самые ценные 10 минут в мире.</strong> Всего 10 минут — столько нужно, чтобы сдать кровь, — и кто-то сможет продолжать свою драгоценную жизнь.</blockquote>
@@ -1417,19 +1429,23 @@
   <div class="slide-content">
     <div class="section-label inter">🤝 Вступление</div>
     <h2>Как вступить в АКРК</h2>
-    <div class="slide-cols">
-      <div class="col-text">
-        <div style="margin-bottom:16px;">
-          <p style="font-size:15px;"><strong>1.</strong> <strong>Заполнить форму</strong> — онлайн по QR-коду</p>
-          <p style="font-size:15px;"><strong>2.</strong> <strong>Выбрать тип членства</strong> — действительный / обычный</p>
-          <p style="font-size:15px;"><strong>3.</strong> <strong>После одобрения</strong> — добавление в группы Telegram</p>
+    <div class="slide-cols" style="align-items:center;">
+      <div class="col-photo" style="order:0;">
+        <div class="photo-wrap" style="aspect-ratio:auto;max-width:380px;width:100%;margin:0 auto;text-align:center;">
+          <img src="images/join_form.png" alt="Превью формы вступления АКРК" style="width:100%;max-height:430px;object-fit:contain;border:1px solid var(--border);border-radius:6px;">
         </div>
-        <blockquote>Форма займёт 2 минуты</blockquote>
       </div>
-      <div class="col-photo">
-        <div class="photo-wrap" style="max-width:280px;margin:0 auto;">
-          <img src="images/qr-register.png" alt="Форма вступления АКРК" style="width:100%;display:block;object-fit:contain;">
+      <div class="col-text" style="order:1;display:flex;flex-direction:column;gap:16px;justify-content:center;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <p style="font-size:15px;margin:0;"><strong>1.</strong> <strong>Заполнить форму</strong> — онлайн по QR-коду</p>
+          <p style="font-size:15px;margin:0;"><strong>2.</strong> <strong>Выбрать тип членства</strong> — действительный / обычный</p>
+          <p style="font-size:15px;margin:0;"><strong>3.</strong> <strong>После одобрения</strong> — добавление в группы Telegram</p>
         </div>
+        <div style="max-width:170px;margin:0;text-align:center;">
+          <img src="images/qr-register.png" alt="QR-код формы вступления АКРК" style="width:100%;display:block;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius);">
+          <a href="https://forms.gle/eXMsqgfdzoWPykTQ9" target="_blank" rel="noopener" style="display:block;margin-top:6px;font-size:11px;color:#1E96C8;text-decoration:underline;word-break:break-all;line-height:1.4;">forms.gle/eXMsqgfdzoWPykTQ9</a>
+        </div>
+        <blockquote style="margin:0;">Форма займёт 2 минуты</blockquote>
       </div>
     </div>
   </div>
@@ -1504,7 +1520,15 @@
   const wrapper = document.getElementById('slidesWrapper');
   const counter = document.getElementById('slideCounter');
   const navItems = document.querySelectorAll('.nav-item');
+  const slideNav = document.querySelector('.slide-nav');
   const isMobile = () => window.innerWidth <= 700;
+  let navHideTimer = null;
+
+  function showNav() {
+    slideNav.classList.add('visible');
+    if (navHideTimer) clearTimeout(navHideTimer);
+    navHideTimer = setTimeout(() => { slideNav.classList.remove('visible'); }, 2000);
+  }
 
   function update() {
     if (!isMobile()) {
@@ -1527,6 +1551,7 @@
       slides[n].scrollIntoView({ behavior: 'smooth' });
     }
     update();
+    showNav();
   }
   function nextSlide() { goSlide(current + 1); }
   function prevSlide() { goSlide(current - 1); }
